@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <title>
+    
+    Unity接入TapPlay测试不通过的解决方案 丨
+    
+
+    Egger
+  </title>
+
+  
+  <link rel="shortcut icon" href="/icon.svg">
+  
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+  
+
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/root.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/post.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <header class="header">
+  <section class="header-container">
+    <a class="logo" href="/">EGGER</a>
+    <ul class="nav">
+      
+      <li><a href="/archives">archives</a></li>
+      
+      <li><a href="/about">about</a></li>
+      
+    </ul>
+  </section>
+</header>
+  <main class="main">
+    <article class="post">
+  
+  <div class="post-title">Unity接入TapPlay测试不通过的解决方案</div>
+  <div class="post-meta">
+    <div class="date">2025 September 3rd</div>
+    <div class="tags">
+      
+    </div>
+  </div>
+  
+
+  <main class="post-content"><p>暑期时候参加了学院的社会实践，任务是制作一款跟非遗传承相关的小游戏。当我和团队一起开发完成之后，想要上架TapTap。结果在接入TapPlay测试的时候出现了问题。</p>
+<h1 id="问题来源"><a href="#问题来源" class="headerlink" title="问题来源"></a>问题来源</h1><p>第一次上传游戏包体的时候，由于不清楚目前游戏审核的形势，所以没有添加游戏开始前隐私政策的弹窗。因此TapTap那边的工作人员找到我，要求我在Unity程序启动前添加隐私政策弹窗。</p>
+<p align="center">
+  <img src="/TapPlaySolution/tap.jpg" style="width: 25%; height: 25%;" alt = "TapTap的人找到我">
+</p>
+
+<p>当我根据官方提供的解决方案对我的项目重新进行打包，然后提交TapPlay测试的时候，遇到了TapPlay有些机型测试不通过的情况，在接入隐私政策弹窗之后部分机型打开游戏会发生闪退。提供的检测报告中只提供了错误日志，这对我没有接触过安卓开发的人很是苦恼。</p>
+<h1 id="尝试各种解决方案"><a href="#尝试各种解决方案" class="headerlink" title="尝试各种解决方案"></a>尝试各种解决方案</h1><p>后来我硬着头皮看错误日志，又是问ai又是google bing的，找到的解决方案基本都没有什么用，可能我这个问题也比较小众。实在没招了，我去TapTap开发者平台提交工单，结果工单半天不回复，最后回复一个正在联系技术人员，这我得等到什么时候。</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/692142521">后来刷知乎时候</a>看见评论区有位老哥似乎和我遇到了同类型的问题，作者说隐私政策需要改成不使用本地网页。这给了我一个突破点。于是我先根据这位知乎老哥的解决方案进行尝试，cv他的代码后再次打包提交测试，结果还是不通过，shift！</p>
+<h1 id="最后解决方案"><a href="#最后解决方案" class="headerlink" title="最后解决方案"></a>最后解决方案</h1><p>后来我就想，要不我根本就不要使用网页了，我直接把隐私政策文本作为字符串放在unity启动项之前的PrivacyActivity.java这个启动项里面。由于最开始使用的是webview控件用于显示文本，因此第一次打包的时候我没有注意直接用”\n”来换行了，所以打包出来后的隐私政策弹窗里面的文字相当杂乱无章，可读性极差。但是我并没有立即修改，而是先尝试提交TapPlay平台用于测试，来验证我这个想法的正确性。</p>
+<p>半个小时后，测试结果出来了，竟然测试通过了，哈哈哈。看来我这个想法没有问题。于是我开始对webview控件里显示的文字进行排版，然后打包后再次提交测试。结果竟然测试又不通过了，还是同样的机型，同样的闪退问题。</p>
+<p>难道是webview的问题吗，我把webview删掉，使用textview控件来展示隐私政策文本，然后使用”\n”来换行。最后打包提交测试，没想到通过了！！</p>
+<pre><code class="highlight java"><span class="keyword">package</span> com.unity3d.player;
+<span class="keyword">import</span> android.app.Activity;
+<span class="keyword">import</span> android.app.AlertDialog;
+<span class="keyword">import</span> android.content.DialogInterface;
+<span class="keyword">import</span> android.content.Intent;
+<span class="keyword">import</span> android.content.SharedPreferences;
+<span class="keyword">import</span> android.content.pm.ActivityInfo;
+<span class="keyword">import</span> android.content.pm.PackageManager;
+<span class="keyword">import</span> android.os.Bundle;
+<span class="keyword">import</span> android.widget.ScrollView;
+<span class="keyword">import</span> android.widget.TextView;
+ 
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PrivacyActivity</span> <span class="keyword">extends</span> <span class="title class_">Activity</span> <span class="keyword">implements</span> <span class="title class_">DialogInterface</span>.OnClickListener &#123;
+    <span class="keyword">final</span> <span class="type">String</span> <span class="variable">privacyContext</span> <span class="operator">=</span> <span class="string">&quot;隐私政策文本。。。&quot;</span>;
+
+    <span class="meta">@Override</span>
+    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;
+        <span class="built_in">super</span>.onCreate(savedInstanceState);
+ 
+        <span class="comment">//如果已经同意过隐私协议则直接进入Unity Activity</span>
+        <span class="keyword">if</span> (GetPrivacyAccept())&#123;
+            EnterUnityActivity();
+            <span class="keyword">return</span>;
+        &#125;
+        ShowPrivacyDialog();<span class="comment">//弹出隐私协议对话框</span>
+    &#125;
+ 
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(DialogInterface dialogInterface, <span class="type">int</span> i)</span> &#123;
+        <span class="keyword">switch</span> (i)&#123;
+            <span class="keyword">case</span> AlertDialog.BUTTON_POSITIVE:<span class="comment">//点击同意按钮</span>
+                SetPrivacyAccept(<span class="literal">true</span>);
+                EnterUnityActivity();<span class="comment">//启动Unity Activity</span>
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> AlertDialog.BUTTON_NEGATIVE:<span class="comment">//点击拒绝按钮,直接退出App</span>
+                finish();
+                <span class="keyword">break</span>;
+        &#125;
+    &#125;
+    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">ShowPrivacyDialog</span><span class="params">()</span>&#123;
+        <span class="type">ScrollView</span> <span class="variable">scrollView</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ScrollView</span>(<span class="built_in">this</span>);
+        <span class="type">TextView</span> <span class="variable">textView</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TextView</span>(<span class="built_in">this</span>);
+        textView.setText(privacyContext);
+        scrollView.addView(textView);
+        AlertDialog.<span class="type">Builder</span> <span class="variable">privacyDialog</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AlertDialog</span>.Builder(<span class="built_in">this</span>);
+        privacyDialog.setCancelable(<span class="literal">false</span>);
+        privacyDialog.setView(scrollView);
+        privacyDialog.setTitle(<span class="string">&quot;用户条款与隐私&quot;</span>);
+        privacyDialog.setNegativeButton(<span class="string">&quot;取消&quot;</span>,<span class="built_in">this</span>);
+        privacyDialog.setPositiveButton(<span class="string">&quot;确认&quot;</span>,<span class="built_in">this</span>);
+        privacyDialog.create().show();
+    &#125;
+<span class="comment">//启动Unity Activity</span>
+    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">EnterUnityActivity</span><span class="params">()</span>&#123;
+        <span class="type">Intent</span> <span class="variable">unityAct</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Intent</span>();
+        unityAct.setClassName(<span class="built_in">this</span>, <span class="string">&quot;com.unity3d.player.UnityPlayerActivity&quot;</span>);
+        <span class="built_in">this</span>.startActivity(unityAct);
+    &#125;
+<span class="comment">//保存同意隐私协议状态</span>
+    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">SetPrivacyAccept</span><span class="params">(<span class="type">boolean</span> accepted)</span>&#123;
+        SharedPreferences.<span class="type">Editor</span> <span class="variable">prefs</span> <span class="operator">=</span> <span class="built_in">this</span>.getSharedPreferences(<span class="string">&quot;PlayerPrefs&quot;</span>, MODE_PRIVATE).edit();
+        prefs.putBoolean(<span class="string">&quot;PrivacyAccepted&quot;</span>, accepted);
+        prefs.apply();
+    &#125;
+    <span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">GetPrivacyAccept</span><span class="params">()</span>&#123;
+        <span class="type">SharedPreferences</span> <span class="variable">prefs</span> <span class="operator">=</span> <span class="built_in">this</span>.getSharedPreferences(<span class="string">&quot;PlayerPrefs&quot;</span>, MODE_PRIVATE);
+        <span class="keyword">return</span> prefs.getBoolean(<span class="string">&quot;PrivacyAccepted&quot;</span>, <span class="literal">false</span>);
+    &#125;
+&#125;</code></pre>
+
+<p>总之就是，使用webview控件在有些机型上就会出现奇怪的问题，把它删掉就好了。虽然这样看来这种做法有点粗糙，但是想要快点通过TapPlay测试然后上架的话，也不失为一种可以尝试的途径，既不需要复杂的配置，也不需要深入了解太多的东西，只需要纯粹地添加字符串就行。</p>
+</main>
+
+</article>
+
+
+<script src="/js/highlight.js"></script>
+
+  </main>
+  <footer class="footer">
+  
+  <span>Copyright © SuperEgger435</span>
+  
+</footer>
+  
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

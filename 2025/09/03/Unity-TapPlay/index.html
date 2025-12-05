@@ -119,7 +119,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">4</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">4</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">15</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">4</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">4</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">16</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -170,7 +170,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">问题来源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">尝试各种解决方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">最后解决方案</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%9D%A5%E6%BA%90"><span class="nav-number">1.</span> <span class="nav-text">问题来源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%9D%E8%AF%95%E5%90%84%E7%A7%8D%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">2.</span> <span class="nav-text">尝试各种解决方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E5%90%8E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">3.</span> <span class="nav-text">最后解决方案</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -183,7 +183,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -283,25 +283,24 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>暑期时候参加了学院的社会实践，任务是制作一款跟非遗传承相关的小游戏。当我和团队一起开发完成之后，想要上架TapTap。结果在接入TapPlay测试的时候出现了问题。</p>
-<span id="more"></span>
-<h1>问题来源</h1>
+    <div class="post-body" itemprop="articleBody"><p>暑期时候参加了学院的社会实践，任务是制作一款跟非遗传承相关的小游戏。当我和团队一起开发完成之后，想要上架TapTap。结果在接入TapPlay测试的时候出现了问题。
+<span id="more"></span></p>
+<h1 id="问题来源">问题来源</h1>
 <p>第一次上传游戏包体的时候，由于不清楚目前游戏审核的形势，所以没有添加游戏开始前隐私政策的弹窗。因此TapTap那边的工作人员找到我，要求我在Unity程序启动前添加隐私政策弹窗。</p>
 <p align="center">
-  <a>
-    <img width="300" src="/images/TapPlaySolution/tap.jpg">
-    <br>
-    <b>图1: Taptap的人找到我</b>
-  </a>
+<a> <img width="300" src="/images/TapPlaySolution/tap.jpg"> <br> <b>图1:
+Taptap的人找到我</b> </a>
 </p>
 <p>当我根据官方提供的解决方案对我的项目重新进行打包，然后提交TapPlay测试的时候，遇到了TapPlay有些机型测试不通过的情况，在接入隐私政策弹窗之后部分机型打开游戏会发生闪退。提供的检测报告中只提供了错误日志，这对我没有接触过安卓开发的人很是苦恼。</p>
-<h1>尝试各种解决方案</h1>
-<p>后来我硬着头皮看错误日志，又是问ai又是google bing的，找到的解决方案基本都没有什么用，可能我这个问题也比较小众。实在没招了，我去TapTap开发者平台提交工单，结果工单半天不回复，最后回复一个正在联系技术人员，这我得等到什么时候。</p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/692142521">后来刷知乎时候</a>看见评论区有位老哥似乎和我遇到了同类型的问题，作者说隐私政策需要改成不使用本地网页。这给了我一个突破点。于是我先根据这位知乎老哥的解决方案进行尝试，cv他的代码后再次打包提交测试，结果还是不通过，shift！</p>
-<h1>最后解决方案</h1>
-<p>后来我就想，要不我根本就不要使用网页了，我直接把隐私政策文本作为字符串放在unity启动项之前的PrivacyActivity.java这个启动项里面。由于最开始使用的是webview控件用于显示文本，因此第一次打包的时候我没有注意直接用&quot;\n&quot;来换行了，所以打包出来后的隐私政策弹窗里面的文字相当杂乱无章，可读性极差。但是我并没有立即修改，而是先尝试提交TapPlay平台用于测试，来验证我这个想法的正确性。</p>
+<h1 id="尝试各种解决方案">尝试各种解决方案</h1>
+<p>后来我硬着头皮看错误日志，又是问ai又是google
+bing的，找到的解决方案基本都没有什么用，可能我这个问题也比较小众。实在没招了，我去TapTap开发者平台提交工单，结果工单半天不回复，最后回复一个正在联系技术人员，这我得等到什么时候。</p>
+<p><a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/692142521">后来刷知乎时候</a>看见评论区有位老哥似乎和我遇到了同类型的问题，作者说隐私政策需要改成不使用本地网页。这给了我一个突破点。于是我先根据这位知乎老哥的解决方案进行尝试，cv他的代码后再次打包提交测试，结果还是不通过，shift！</p>
+<h1 id="最后解决方案">最后解决方案</h1>
+<p>后来我就想，要不我根本就不要使用网页了，我直接把隐私政策文本作为字符串放在unity启动项之前的PrivacyActivity.java这个启动项里面。由于最开始使用的是webview控件用于显示文本，因此第一次打包的时候我没有注意直接用”“来换行了，所以打包出来后的隐私政策弹窗里面的文字相当杂乱无章，可读性极差。但是我并没有立即修改，而是先尝试提交TapPlay平台用于测试，来验证我这个想法的正确性。</p>
 <p>半个小时后，测试结果出来了，竟然测试通过了，哈哈哈。看来我这个想法没有问题。于是我开始对webview控件里显示的文字进行排版，然后打包后再次提交测试。结果竟然测试又不通过了，还是同样的机型，同样的闪退问题。</p>
-<p>难道是webview的问题吗，我把webview删掉，使用textview控件来展示隐私政策文本，然后使用&quot;\n&quot;来换行。最后打包提交测试，没想到通过了！！</p>
+<p>难道是webview的问题吗，我把webview删掉，使用textview控件来展示隐私政策文本，然后使用”\n”来换行。最后打包提交测试，没想到通过了！！</p>
 <pre><code class="highlight java"><span class="keyword">package</span> com.unity3d.player;
 <span class="keyword">import</span> android.app.Activity;
 <span class="keyword">import</span> android.app.AlertDialog;

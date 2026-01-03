@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"egger435.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":false,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":500},"language":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="自动控制原理实验报告">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于PID调节的简易无人机飞行高度控制系统分析">
+<meta property="og:url" content="https://egger435.github.io/2026/01/03/Drone-easyPID/index.html">
+<meta property="og:site_name" content="EGGER">
+<meta property="og:description" content="自动控制原理实验报告">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://egger435.github.io/images/Drone-easyPID/pic1.png">
+<meta property="og:image" content="https://egger435.github.io/images/Drone-easyPID/pic2.png">
+<meta property="og:image" content="https://egger435.github.io/images/Drone-easyPID/figure_noPid.png">
+<meta property="og:image" content="https://egger435.github.io/images/Drone-easyPID/pic3.png">
+<meta property="og:image" content="https://egger435.github.io/images/Drone-easyPID/pic4.png">
+<meta property="og:image" content="https://egger435.github.io/images/Drone-easyPID/pic5.png">
+<meta property="og:image" content="https://egger435.github.io/images/Drone-easyPID/pic6.png">
+<meta property="og:image" content="https://egger435.github.io/images/Drone-easyPID/pic7.png">
+<meta property="og:image" content="https://egger435.github.io/images/Drone-easyPID/pic8.png">
+<meta property="og:image" content="https://egger435.github.io/images/Drone-easyPID/pic9.png">
+<meta property="og:image" content="https://egger435.github.io/images/Drone-easyPID/pic10.png">
+<meta property="og:image" content="https://egger435.github.io/images/Drone-easyPID/pic11.png">
+<meta property="og:image" content="https://egger435.github.io/images/Drone-easyPID/pic12.png">
+<meta property="og:image" content="https://egger435.github.io/images/Drone-easyPID/pic13.png">
+<meta property="og:image" content="https://egger435.github.io/images/Drone-easyPID/pic14.png">
+<meta property="og:image" content="https://egger435.github.io/images/Drone-easyPID/pic15.png">
+<meta property="og:image" content="https://egger435.github.io/images/Drone-easyPID/pic16.png">
+<meta property="og:image" content="https://egger435.github.io/images/Drone-easyPID/pic17.png">
+<meta property="og:image" content="https://egger435.github.io/images/Drone-easyPID/pic18.png">
+<meta property="og:image" content="https://egger435.github.io/images/Drone-easyPID/pic19.png">
+<meta property="article:published_time" content="2026-01-03T05:03:03.000Z">
+<meta property="article:modified_time" content="2026-01-03T05:10:05.084Z">
+<meta property="article:author" content="Egger">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://egger435.github.io/images/Drone-easyPID/pic1.png">
+
+
+<link rel="canonical" href="https://egger435.github.io/2026/01/03/Drone-easyPID/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://egger435.github.io/2026/01/03/Drone-easyPID/","path":"2026/01/03/Drone-easyPID/","title":"基于PID调节的简易无人机飞行高度控制系统分析"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>基于PID调节的简易无人机飞行高度控制系统分析 | EGGER</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">EGGER</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">4</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">18</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8Epid%E8%B0%83%E8%8A%82%E7%9A%84%E7%AE%80%E6%98%93%E6%97%A0%E4%BA%BA%E6%9C%BA%E9%A3%9E%E8%A1%8C%E9%AB%98%E5%BA%A6%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">基于PID调节的简易无人机飞行高度控制系统分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">实验背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1"><span class="nav-number">1.2.</span> <span class="nav-text">数学建模</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E7%9B%AE%E6%A0%87"><span class="nav-number">1.3.</span> <span class="nav-text">控制目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A0pid%E6%8E%A7%E5%88%B6%E4%B8%8B%E7%9A%84%E6%97%B6%E5%9F%9F%E5%88%86%E6%9E%90"><span class="nav-number">1.4.</span> <span class="nav-text">无PID控制下的时域分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E8%AE%A1%E7%AE%97"><span class="nav-number">1.4.1.</span> <span class="nav-text">动态性能指标计算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pid%E6%8E%A7%E5%88%B6%E5%99%A8%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.5.</span> <span class="nav-text">PID控制器设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pid%E5%8E%9F%E7%90%86"><span class="nav-number">1.5.1.</span> <span class="nav-text">PID原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AF%94%E4%BE%8B%E7%8E%AF%E8%8A%82p"><span class="nav-number">1.5.2.</span> <span class="nav-text">比例环节P</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%AF%E5%88%86%E7%8E%AF%E8%8A%82i"><span class="nav-number">1.5.3.</span> <span class="nav-text">积分环节I</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AE%E5%88%86%E7%8E%AF%E8%8A%82d"><span class="nav-number">1.5.4.</span> <span class="nav-text">微分环节D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pid%E6%8E%A7%E5%88%B6%E5%99%A8%E7%9A%84%E6%95%B4%E4%BD%93%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.5.5.</span> <span class="nav-text">PID控制器的整体模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B9%E8%BD%A8%E8%BF%B9%E5%88%86%E6%9E%90pid%E5%8F%82%E6%95%B0%E8%B0%83%E6%95%B4"><span class="nav-number">1.6.</span> <span class="nav-text">根轨迹分析：PID参数调整</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%85%E6%AF%94%E4%BE%8B%E6%8E%A7%E5%88%B6k_p%E5%8F%82%E6%95%B0%E8%B0%83%E8%8A%82"><span class="nav-number">1.6.1.</span> <span class="nav-text">仅比例控制：\(K_p\)参数调节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AF%94%E4%BE%8B-%E5%BE%AE%E5%88%86%E6%8E%A7%E5%88%B6k_d%E5%8F%82%E6%95%B0%E8%B0%83%E8%8A%82"><span class="nav-number">1.6.2.</span> <span class="nav-text">比例-微分控制：\(K_d\)参数调节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AF%94%E4%BE%8B-%E7%A7%AF%E5%88%86-%E5%BE%AE%E5%88%86%E6%8E%A7%E5%88%B6k_i%E5%8F%82%E6%95%B0%E8%B0%83%E8%8A%82"><span class="nav-number">1.6.3.</span> <span class="nav-text">比例-积分-微分控制：\(K_i\)参数调节</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90nyquist%E5%9B%BE%E4%B8%8Ebode%E5%9B%BE%E7%BB%98%E5%88%B6"><span class="nav-number">1.7.</span> <span class="nav-text">频域分析：Nyquist图与Bode图绘制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nyquist%E5%9B%BE%E7%BB%98%E5%88%B6"><span class="nav-number">1.7.1.</span> <span class="nav-text">Nyquist图绘制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bode%E5%9B%BE%E7%BB%98%E5%88%B6"><span class="nav-number">1.7.2.</span> <span class="nav-text">Bode图绘制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E7%A8%8B%E5%BA%A6%E5%88%86%E6%9E%90%E4%B8%8E%E6%80%BB%E7%BB%93"><span class="nav-number">1.8.</span> <span class="nav-text">优化程度分析与总结</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Egger</p>
+  <div class="site-description" itemprop="description">Hello im egger</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/egger435" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;egger435" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://egger435.github.io/2026/01/03/Drone-easyPID/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Egger">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="EGGER">
+      <meta itemprop="description" content="Hello im egger">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="基于PID调节的简易无人机飞行高度控制系统分析 | EGGER">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于PID调节的简易无人机飞行高度控制系统分析
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-01-03 13:03:03 / Modified: 13:10:05" itemprop="dateCreated datePublished" datetime="2026-01-03T13:03:03+08:00">2026-01-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8E%A7%E5%88%B6/" itemprop="url" rel="index"><span itemprop="name">控制</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>  自动控制原理实验报告</p>
+<span id="more"></span>
+<h1
+id="基于pid调节的简易无人机飞行高度控制系统分析">基于PID调节的简易无人机飞行高度控制系统分析</h1>
+<hr />
+<h2 id="实验背景">实验背景</h2>
+<p>  无人机技术在航拍测绘、物流配送、农业植保、应急救援等领域的普及，使其飞控系统的可靠性成为技术落地的核心前提
+—— 而高度控制是飞控系统的
+“基础生命线”：若无人机无法稳定维持目标高度，不仅会影响航拍画质、物流投送精度等功能实现，甚至会因高度失控引发坠机风险。</p>
+<p>  实际工业级飞控系统需融合姿态解算、多传感器融合、抗干扰算法等复杂模块，直接上手开发门槛较高。因此，本实验采用垂直方向动力学简化模型（忽略姿态耦合、风场强扰动等复杂因素），聚焦
+“高度控制” 这一核心子问题，是入门级飞控算法验证的典型载体。</p>
+<p>  传统无PID控制器下，无人机高度系统易出现
+“响应迟缓、超调剧烈、稳态误差大” 的问题，无法满足基本悬停需求。而 PID
+控制器作为工业控制领域最经典、易实现的闭环控制算法，兼具
+“结构简单、参数物理意义明确、适配性强”
+的优势，是验证高度控制算法有效性的理想选择。</p>
+<p>  本实验通过 “简化模型 + PID 控制”
+的组合，既贴合入门级飞控算法的学习逻辑，也能直观验证闭环控制对系统性能的优化价值，为后续复杂飞控系统的设计与调试奠定理论与实践基础。</p>
+<hr />
+<h2 id="数学建模">数学建模</h2>
+<p>  忽略无人机的飞行姿态，仅考虑垂直方向动力学：</p>
+<p>  在垂直方向上无人机受到升力<span
+class="math inline">\(F\)</span>、自身重力<span
+class="math inline">\(G\)</span>和空气阻力<span
+class="math inline">\(f\)</span>。受力情况如图1所示。</p>
+<p align="center">
+<a> <img width="500" src="/images/Drone-easyPID/pic1.png"> </a> <br>
+<b>图1：无人机受力情况</b>
+</p>
+<p>  在考虑增量情况下进行受力分析得到：</p>
+<p><span class="math display">\[
+\Delta F - kv = ma
+\]</span></p>
+<p>  其中<span class="math inline">\(k\)</span>为空气阻力系数、<span
+class="math inline">\(\Delta
+F\)</span>为推力增量。将速度和加速度代入上式得到：</p>
+<p><span class="math display">\[
+\Delta F(t) - k \frac{dx(t)}{dt} = m \frac{d^2x(t)}{dt^2}
+\]</span></p>
+<p>  无人机质量为<span
+class="math inline">\(m\)</span>，空气阻力系数为<span
+class="math inline">\(k\)</span>。在零初始条件下，对上述方程各项进行拉普拉斯变换得到复数域数学模型：</p>
+<p><span class="math display">\[
+ms^2X_0(s)+ksX_0(s) = \Delta F&#39;(s)
+\]</span></p>
+<p>  由定义得到系统的开环传递函数：</p>
+<p><span class="math display">\[
+G(s) = \frac{X_0(s)}{\Delta F&#39;(s)} = \frac{1}{ms^2+ks}
+\]</span></p>
+<p>  闭环传递函数:</p>
+<p><span class="math display">\[
+\Phi(s) = \frac{G(s)}{1+G(s)} =
+\frac{\frac{1}{ms^2+ks}}{1+\frac{1}{ms^2+ks}} = \frac{1}{ms^2+ks+1}
+\]</span></p>
+<p>  将闭环传递函数化为二阶系统的标准形式:</p>
+<p><span class="math display">\[
+\Phi(s) = \frac{\frac{1}{m}}{s^2 + \frac{k}{m}s+\frac{1}{m}}
+\]</span></p>
+<p>  其中无阻尼振荡频率<span
+class="math inline">\(\omega_n=\sqrt{\frac{1}{m}}\)</span>，阻尼比<span
+class="math inline">\(\zeta=\frac{k}{2\sqrt{m}}\)</span>。由于空气阻力系数<span
+class="math inline">\(k\)</span>较小，因此可以将阻尼比<span
+class="math inline">\(\zeta\)</span>的值视为<span
+class="math inline">\(0\)</span>到<span
+class="math inline">\(1\)</span>之间，所以该系统为二阶欠阻尼系统。</p>
+<hr />
+<h2 id="控制目标">控制目标</h2>
+<ol type="1">
+<li><p><strong>实现高度阶跃的跟踪</strong>，从<span
+class="math inline">\(0\rightarrow1m\)</span>悬停</p></li>
+<li><p><strong>动态性能指标</strong>：</p>
+<p>上升时间短：<span class="math inline">\(t_r&lt;1s\)</span></p>
+<p>调节时间短：<span class="math inline">\(t_s&lt;3s\)</span></p>
+<p>超调量小：<span class="math inline">\(\sigma\%&lt;5\%\)</span></p>
+<p>稳态误差小</p></li>
+<li><p><strong>系统稳定，无发散或者持续振荡</strong></p></li>
+</ol>
+<hr />
+<h2 id="无pid控制下的时域分析">无PID控制下的时域分析</h2>
+<p>  假设无人机质量<span
+class="math inline">\(m=5kg\)</span>，空气阻力系数<span
+class="math inline">\(k=0.5\)</span>。在这种情况下使用MATLAB的Simulink绘制简单的闭环系统阶跃响应图像。</p>
+<p align="center">
+<a> <img width="600" src="/images/Drone-easyPID/pic2.png"> </a> <br>
+<b>图2：无PID调节的Simulink控制框图</b>
+</p>
+<p align="center">
+<a> <img width="500" src="/images/Drone-easyPID/figure_noPid.png"> </a>
+<br> <b>图3：无PID调节的单位阶跃响应</b>
+</p>
+<h3 id="动态性能指标计算">动态性能指标计算</h3>
+<p>  根据图2模拟出来的数据可以计算其动态性能指标。对于无人机的飞行高度控制，我们更加关注无人机能否快速地准确地到达我们指定的高度。因此，我们需要计算该系统的上升时间<span
+class="math inline">\(t_r\)</span>、超调量<span
+class="math inline">\(\sigma\%\)</span>以及调节时间<span
+class="math inline">\(t_s\)</span>。</p>
+<p><span class="math display">\[
+上升时间：t_r=\frac{\pi-\beta}{\omega_d}=\frac{\pi-\arccos\zeta}{\omega_n\sqrt{1-\zeta^2}}
+\]</span></p>
+<p><span class="math display">\[
+超调量：\sigma\%=e^{-\pi\zeta/\sqrt{1-\zeta^2}}\times100\%
+\]</span></p>
+<p><span class="math display">\[
+调节时间：t_s=\frac{3.5}{\zeta\omega_n} ~~~~~~~~(误差带\Delta=0.05)
+\]</span></p>
+<p>  将无阻尼振荡频率<span
+class="math inline">\(\omega_n=\sqrt{\frac{1}{m}}=\sqrt{\frac{1}{5}}\approx0.4472\)</span>和阻尼比<span
+class="math inline">\(\zeta=\frac{k}{2\sqrt{m}}=\frac{0.5}{2\sqrt{5}}\approx0.1118\)</span>代入上式得到：</p>
+<p><span class="math display">\[
+t_r\approx7.069s,~\sigma\%\approx70.23\%,~t_s\approx70.00s
+\]</span></p>
+<p>  从图3以及动态性能指标的计算结果中可以看出在无PID调节的情况下，虽然最后无人机的高度会趋向于1m，但是响应速度较慢，调节时间较长，并且超调量很高，振荡幅度很大。</p>
+<hr />
+<h2 id="pid控制器设计">PID控制器设计</h2>
+<p>  这并不是我们希望得到的效果。我们希望无人机在接收到一个0到1m的阶跃信号之后，能够迅速飞行至1m并保持误差可接受的稳定状态。因此需要设计PID控制器改善系统的动态性能。</p>
+<h3 id="pid原理">PID原理</h3>
+<p>  PID控制的核心逻辑是根据“期望输出和实际输出的误差”，通过比例、积分、微分三个环节的加权组合生成控制器，使得系统能够快速、稳定地跟踪目标值。</p>
+<p>  在本实验中我们需要让无人机快速、无超调地跟踪期望高度。而实际高度与期望高度存在误差，需要通过调整推力增量来消除误差。这里PID控制器地作用就是将高度误差转化为推力增量指令，通过P、I、D三个环节的协同作用来快速消除误差避免系统振荡。</p>
+<h3 id="比例环节p">比例环节P</h3>
+<p>  在比例环节中，其输出与系统的当前误差成正比。我们记比例环节的输出为<span
+class="math inline">\(u_P\)</span>，比例系数为<span
+class="math inline">\(K_p\)</span>，实时误差为<span
+class="math inline">\(e(t)\)</span>，则有如下式子成立：</p>
+<p><span class="math display">\[
+u_P=K_p\cdot e(t)
+\]</span></p>
+<p>  其中，系统的实时误差由期望高度减去实际高度得到。以上式子表示的物理含义为：当前的误差有多大，就给出多大的控制量。也就是说误差越大，无人机的推力就越强烈。</p>
+<p>  若无人机的实际高度低于1m，则有<span
+class="math inline">\(e(t)&gt;0\)</span>，P环节就会输出正的推力增量，电机加大推力，无人机上升；若无人机的实际高度高于1m，则有<span
+class="math inline">\(e(t)&lt;0\)</span>，P环节就会输出负的推力增量，无人机就会下降。</p>
+<h3 id="积分环节i">积分环节I</h3>
+<p>  在积分环节中，其输出与累计的误差值成正比。它反映了误差的历史总和。我们记积分环节的输出为<span
+class="math inline">\(u_I\)</span>，积分系数为<span
+class="math inline">\(K_i\)</span>，则有以下式子成立：</p>
+<p><span class="math display">\[
+u_I = K_i \cdot \int_0^t e(\tau)d\tau
+\]</span></p>
+<p>  以上式子表示的物理含义为：只要误差存在，就持续累积控制量，直到误差为0。积分环节主要针对于P环节无法消除的稳态误差。</p>
+<h3 id="微分环节d">微分环节D</h3>
+<p>  在微分环节中，其输出与误差的变化率成正比。它反映了误差的变化趋势。我们记微分环节输出为<span
+class="math inline">\(u_D\)</span>，微分系数为<span
+class="math inline">\(K_d\)</span>，则有一下式子成立：</p>
+<p><span class="math display">\[
+u_D=K_d\cdot\frac{de(t)}{dt}
+\]</span></p>
+<p>  以上式子表示的物理含义为：预判误差的变化趋势，提前给出反向控制量，它能够抑制系统超调，让响应更加平稳。当无人机在快速上升过程中，误差<span
+class="math inline">\(e(t)\)</span>快速减小，<span
+class="math inline">\(\frac{de(t)}{dt} &lt;
+0\)</span>，则微分环节输出负的推力增量，提前减小电机推力，避免无人机过冲。</p>
+<h3 id="pid控制器的整体模型">PID控制器的整体模型</h3>
+<p>  PID的总输出是比例、积分、微分三个环节的叠加，即控制量由以下式子得到：</p>
+<p><span class="math display">\[
+u(t)=u_P+u_I+u_D=K_p\cdot e(t)+K_i\cdot
+\int_0^te(\tau)d\tau+K_d\cdot\frac{de(t)}{dt}
+\]</span></p>
+<p>  在零初始条件下对上式做拉普拉斯变换得到：</p>
+<p><span class="math display">\[
+U(s) = K_pE(s) + \frac{K_i}{s}E(s) + K_d\cdot sE(s)
+\]</span></p>
+<p><span class="math display">\[
+G_{PID}(s)=\frac{U(s)}{E(s)}=K_p+\frac{K_i}{s}+K_d\cdot
+s=\frac{K_ds^2+K_ps+K_i}{s}
+\]</span></p>
+<p>  其中<span
+class="math inline">\(G_{PID}(s)\)</span>为PID环节的传递函数。结合之前的无人机高度控制系统的开环传递函数<span
+class="math inline">\(G(s)=\frac{1}{ms^2+ks}\)</span>，得到系统的开环传递函数为：</p>
+<p><span class="math display">\[
+G_{open}(s)=G_{PID}(s)G(s)=\frac{K_ds^2+K_ps+K_i}{ms^3+ks^2}=\frac{K_ds^2+K_ps+K_i}{5s^3+0.5s^2}
+\]</span></p>
+<p>  闭环传递函数为：</p>
+<p><span class="math display">\[
+\Phi_{PID}(s)=\frac{G_{PID}(s)\cdot G(s)}{1+G_{PID}(s)\cdot
+G(s)}=\frac{K_ds^2+K_ps+K_i}{ms^3+(k+K_d)s^2+K_ps+K_i}=\frac{K_ds^2+K_ps+K_i}{5s^3+(0.5+K_d)s^2+K_ps+K_i}
+\]</span></p>
+<p>  在MATLAB的Simulink中绘制PID控制器框图如下：</p>
+<p align="center">
+<a> <img width="600" src="/images/Drone-easyPID/pic3.png"> </a> <br>
+<b>图4：含有PID调节的Simulink控制框图</b>
+</p>
+<hr />
+<h2 id="根轨迹分析pid参数调整">根轨迹分析：PID参数调整</h2>
+<p>  根轨迹分析能够将闭环极点随PID参数变化的规律进行可视化，通过主动调整<span
+class="math inline">\(K_p\)</span>、<span
+class="math inline">\(K_i\)</span>、<span
+class="math inline">\(K_d\)</span>，将闭环极点配置到s平面的理想区域，从而达到精准控制超调、调节时间等时域指标。</p>
+<p>  参数的调整根据<span class="math inline">\(P\rightarrow PD
+\rightarrow PID\)</span>的递进顺序，每一步使用根轨迹确定参数范围。</p>
+<h3 id="仅比例控制k_p参数调节">仅比例控制：<span
+class="math inline">\(K_p\)</span>参数调节</h3>
+<p>  在仅比例控制的情况下，令<span
+class="math inline">\(K_i=0\)</span>、<span
+class="math inline">\(K_d=0\)</span>，系统开环传递函数简化为：</p>
+<p><span class="math display">\[
+G_{open,P}(s)=\frac{K_p}{s(5s+0.5)}=\frac{\frac{K_p}{5}}{s(s+0.1)}
+\]</span></p>
+<p>  其中开环系统根轨迹增益<span
+class="math inline">\(K^*=\frac{K_p}{5}\)</span>。系统闭环传递函数简化为：</p>
+<p><span class="math display">\[
+\Phi_P(s)=\frac{K_p}{5s^2+0.5s+K_p}
+\]</span></p>
+<p>  于是，特征方程式可写为：</p>
+<p><span class="math display">\[
+5s^2+0.5s+K_p = 0
+\]</span></p>
+<p>  得到特征方程式的根为：</p>
+<p><span class="math display">\[
+s_1=-0.05+0.1\sqrt{0.25-20K_p}
+\]</span></p>
+<p><span class="math display">\[
+s_2=-0.05-0.1\sqrt{0.25-20K_p}
+\]</span></p>
+<p>  在MATLAB中可以绘制该系统当<span
+class="math inline">\(K_p\)</span>从零到无穷时候的根轨迹。编写如下代码：</p>
+<pre><code class="highlight matlab">num = <span class="number">1</span>;
+den = conv([<span class="number">1</span>, <span class="number">0</span>], [<span class="number">5</span>, <span class="number">0.5</span>]);
+sys = tf(num, den);
+rlocus(sys);</code></pre>
+<p>  得到根轨迹图像如图:</p>
+<p align="center">
+<a> <img width="500" src="/images/Drone-easyPID/pic4.png"> </a> <br>
+<b>图5：比例控制下的根轨迹图</b>
+</p>
+<p>  根据上图分析可以发现，当增益<span
+class="math inline">\(K_p&lt;0.0125\)</span>时候，闭环特征方程两根分布在实轴上，系统为过阻尼系统，无超调。虽然超调量符合系统设计要求，但是在这种情况下系统响应较慢。</p>
+<p>  而上升时间<span class="math inline">\(t_r\)</span>与阻尼角<span
+class="math inline">\(\beta\)</span>和有阻尼振荡频率<span
+class="math inline">\(\omega_d\)</span>有关，根据公式<span
+class="math inline">\(t_r=\frac{\pi-\beta}{\omega_d}\)</span>可知：为使系统响应尽可能快，则上升时间要尽可能小，所以阻尼角和无阻尼振荡频率要尽可能大。根据图6所示的欠阻尼二阶系统的特征参量可以很容易发现，我们需要让闭环特征根虚部的绝对值尽可能大。</p>
+<p align="center">
+<a> <img width="300" src="/images/Drone-easyPID/pic5.png"> </a> <br>
+<b>图6：欠阻尼二阶系统的特征参量</b>
+</p>
+<p>  所以根据以上分析可以得到，在仅使用比例控制的情况下，要使得系统能够快速响应，则参数<span
+class="math inline">\(K_p\)</span>值要适当大一些。目前我们选择<span
+class="math inline">\(K_p=20\)</span>。</p>
+<p align="center">
+<a> <img width="600" src="/images/Drone-easyPID/pic6.png"> </a> <br>
+<b>图7：不同Kp对响应的影响</b>
+</p>
+<h3 id="比例-微分控制k_d参数调节">比例-微分控制：<span
+class="math inline">\(K_d\)</span>参数调节</h3>
+<p>  在<span
+class="math inline">\(K_p=20\)</span>的情况下，虽然系统的上升时间<span
+class="math inline">\(t_r\)</span>变短了，但是超调量较大并且调节时间<span
+class="math inline">\(t_s\)</span>较长。因此在比例控制的基础上，需要再使用微分控制来抑制系统超调，让响应更加平稳。</p>
+<p>  当<span
+class="math inline">\(K_p=20,~K_i=0\)</span>时，系统的开环传递函数为：</p>
+<p><span class="math display">\[
+G_{open,PD}(s) =
+\frac{K_ds^2+20s}{5s^3+0.5s^2}=\frac{K_ds+20}{5s^2+0.5s}
+\]</span></p>
+<p>  现在需要对其绘制根轨迹以便确定<span
+class="math inline">\(K_d\)</span>的范围。但是由于系统开环传函中<span
+class="math inline">\(K_d\)</span>是s项的系数，而非整个开环传函的增益。因此不能在MATLAB中使用常规的
+<code>rlocus()</code>函数来绘制根轨迹。</p>
+<p>  为了绘制根轨迹，需要参数化遍历<span
+class="math inline">\(K_d\)</span>，逐个计算闭环特征方程的极点并在复平面上绘制。需要编写以下代码：</p>
+<pre><code class="highlight matlab">acc = <span class="number">100</span>;  <span class="comment">% 精度</span>
+Kd_range = <span class="built_in">linspace</span>(<span class="number">0</span>, <span class="number">30</span>, acc);  <span class="comment">% Kd范围从0~30</span>
+poles_all = <span class="built_in">zeros</span>(<span class="built_in">length</span>(Kd_range), <span class="number">2</span>);  <span class="comment">% 二阶系统，每个K_d对应2个闭环极点</span>
+
+<span class="comment">% 遍历K_d，计算每个K_d对应的闭环极点</span>
+<span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="built_in">length</span>(Kd_range)
+    Kd = Kd_range(<span class="built_in">i</span>);
+    <span class="comment">% 构造开环传函和单位负反馈闭环系统</span>
+    num = [Kd <span class="number">20</span>];    <span class="comment">% 分子：Kd*s + 20</span>
+    den = [<span class="number">5</span> <span class="number">0.5</span> <span class="number">0</span>];  <span class="comment">% 分母：5s² + 0.5s</span>
+    G_open = tf(num, den);
+    sys_cl = feedback(G_open, <span class="number">1</span>);
+    poles_all(<span class="built_in">i</span>, :) = pole(sys_cl);
+<span class="keyword">end</span>
+
+<span class="comment">% 绘制根轨迹</span>
+<span class="built_in">plot</span>(<span class="built_in">real</span>(poles_all), <span class="built_in">imag</span>(poles_all), <span class="string">&#x27;b-&#x27;</span>, <span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">1.2</span>);  <span class="comment">% 极点轨迹</span>
+<span class="built_in">hold</span> on;
+<span class="built_in">plot</span>(<span class="built_in">real</span>(poles_all), -<span class="built_in">imag</span>(poles_all), <span class="string">&#x27;b-&#x27;</span>, <span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">1.2</span>); <span class="comment">% 共轭极点</span>
+
+<span class="comment">% 辅助标注</span>
+grid on;
+xlabel(<span class="string">&#x27;实轴&#x27;</span>); ylabel(<span class="string">&#x27;虚轴&#x27;</span>);
+title(<span class="string">&#x27;G_&#123;open,PD&#125;(s)的根轨迹&#x27;</span>);
+<span class="built_in">plot</span>(<span class="built_in">real</span>(poles_all(<span class="number">1</span>,:)), <span class="built_in">imag</span>(poles_all(<span class="number">1</span>,:)), <span class="string">&#x27;ro&#x27;</span>, <span class="string">&#x27;MarkerSize&#x27;</span>,<span class="number">6</span>); <span class="comment">% K_d=0</span>
+text(<span class="built_in">real</span>(poles_all(<span class="number">1</span>,<span class="number">1</span>))+<span class="number">0.1</span>, <span class="built_in">imag</span>(poles_all(<span class="number">1</span>,<span class="number">1</span>)), <span class="string">&#x27;K_d=0&#x27;</span>);
+<span class="built_in">plot</span>(<span class="built_in">real</span>(poles_all(<span class="keyword">end</span>,:)), <span class="built_in">imag</span>(poles_all(<span class="keyword">end</span>,:)), <span class="string">&#x27;go&#x27;</span>, <span class="string">&#x27;MarkerSize&#x27;</span>,<span class="number">6</span>); <span class="comment">% K_d=30</span>
+text(<span class="built_in">real</span>(poles_all(<span class="keyword">end</span>,<span class="number">1</span>))+<span class="number">0.1</span>, <span class="built_in">imag</span>(poles_all(<span class="keyword">end</span>,<span class="number">1</span>)), <span class="string">&#x27;K_d=30&#x27;</span>);</code></pre>
+<p>  运行得到如下图像：</p>
+<p align="center">
+<a> <img width="600" src="/images/Drone-easyPID/pic7.png"> </a> <br>
+<b>图8：精度为100下的根轨迹</b>
+</p>
+<p>  观察上图会发现在分离点附近出现一个菱形，实际上这是<span
+class="math inline">\(K_d\)</span>精度不足导致的。精度为<span
+class="math inline">\(100\)</span>时候步长较大，在分离点附近跨过了分离点的值。为了根轨迹看上去更加美观，可以尝试提高精度。当精度
+<code>acc</code>设置为<span
+class="math inline">\(10000\)</span>时候，几乎就看不出菱形了。</p>
+<p align="center">
+<a> <img width="600" src="/images/Drone-easyPID/pic8.png"> </a> <br>
+<b>图9：精度为10000下的根轨迹</b>
+</p>
+<p align="center">
+<a> <img width="200" src="/images/Drone-easyPID/pic9.png"> </a> <br>
+<b>图10：根轨迹分离点附近的Kd值</b>
+</p>
+<p>  观察图像可以发现，当<span
+class="math inline">\(K_d&lt;19.5\)</span>时，闭环特征方程有两个复数根，系统为欠阻尼，存在振荡。当<span
+class="math inline">\(K_d&gt;19.5\)</span>时，闭环特征方程有两个实数根，系统为过阻尼，无振荡。</p>
+<p>  为了找到合适的<span
+class="math inline">\(K_d\)</span>参数，需要根据系统闭环传递函数的式子以及动态时域性能指标进行分析。在PD控制的情况下，系统的闭环传递函数为：</p>
+<p><span class="math display">\[
+\Phi_{PD}(s)=\frac{K_ds+20}{5s^2+(0.5+K_d)s+20}
+\]</span></p>
+<p>可以发现，该系统为带零点的二阶系统，其手动计算性能指标较为复杂。因此可以使用MATLAB中的
+<code>step()</code>和
+<code>stepinfo()</code>函数直接进行仿真计算。编写如下代码：</p>
+<pre><code class="highlight matlab"><span class="comment">%构造闭环传递函数</span>
+num = [Kd <span class="number">20</span>];        <span class="comment">% 分子：K_d s + 20</span>
+den = [<span class="number">5</span> <span class="number">0.5</span>+Kd <span class="number">20</span>];  <span class="comment">% 分母：5s² + (0.5+K_d)s + 20</span>
+sys = tf(num, den);
+
+step(sys);  <span class="comment">% 单位阶跃响应</span>
+<span class="built_in">hold</span> on;
+grid on;
+xlabel(<span class="string">&#x27;时间/s&#x27;</span>);
+ylabel(<span class="string">&#x27;高度/m&#x27;</span>);
+title(<span class="string">&#x27;PD控制系统单位阶跃响应&#x27;</span>);
+
+info = stepinfo(sys);  <span class="comment">% 提取阶跃响应性能指标</span>
+
+<span class="comment">% 输出结果</span>
+fprintf(<span class="string">&#x27;===== 性能指标（K_d=%.2f） =====\n&#x27;</span>, Kd);
+fprintf(<span class="string">&#x27;上升时间：%.2f s（10%%→90%%稳态值）\n&#x27;</span>, info.RiseTime);
+fprintf(<span class="string">&#x27;超调量：%.2f %%\n&#x27;</span>, info.Overshoot);
+fprintf(<span class="string">&#x27;调节时间：%.2f s（±5%%误差带）\n&#x27;</span>, info.SettlingTime);</code></pre>
+<p>  运行代码，分别绘制当<span
+class="math inline">\(K_d=5,K_d=10,K_d=19.5,K_d=25\)</span>时系统的单位阶跃响应。</p>
+<p align="center">
+<a> <img width="500" src="/images/Drone-easyPID/pic10.png"> </a> <br>
+<b>图11：不同Kd值的单位阶跃响应</b>
+</p>
+<p align="center">
+<a> <img width="250" src="/images/Drone-easyPID/pic11.png"> </a> <br>
+<b>图12：不同Kd值单位阶跃响应的时域性能</b>
+</p>
+<p>  可以发现，PD控制中微分环节对比例环节的振荡效果有明显的抑制作用。并且随着<span
+class="math inline">\(K_d\)</span>的增大，抑制效果越强，同时系统超调量、上升时间和调节时间均减少，系统的响应速度更快。为了满足<span
+class="math inline">\(t_r&lt;1s,~t_s&lt;3s,~\sigma\%&lt;5\%\)</span>的控制目标，可以选择<span
+class="math inline">\(K_d=35\)</span>。</p>
+<p align="center">
+<a> <img width="250" src="/images/Drone-easyPID/pic12.png"> </a> <br>
+<b>图13：Kd=35时系统时域性能指标</b>
+</p>
+<h3 id="比例-积分-微分控制k_i参数调节">比例-积分-微分控制：<span
+class="math inline">\(K_i\)</span>参数调节</h3>
+<p>  从上面的仿真结果来看，PD控制已经基本符合条件。而在PID中加入积分环节的作用是为了消除稳态误差。我们可以尝试分析一下在<span
+class="math inline">\(K_p,~K_d\)</span>两个参数固定时候，<span
+class="math inline">\(K_i\)</span>对系统稳定性的影响。</p>
+<p>  当<span
+class="math inline">\(K_p=20,~K_d=35\)</span>时，系统的闭环传函为：</p>
+<p><span class="math display">\[
+\Phi_{PID}(s)=\frac{35s^2+20s+K_i}{5s^3+35.5s^2+20s+K_i}
+\]</span></p>
+<p>  这是一个高阶系统，手动计算分析难度较大，因此可以借助MATLAB来绘制根轨迹以及随着<span
+class="math inline">\(K_i\)</span>的变化其阶跃响应的变化。编写以下代码来绘制根轨迹：</p>
+<pre><code class="highlight matlab">Ki_range = <span class="built_in">linspace</span>(<span class="number">-1</span>, <span class="number">300</span>, <span class="number">100000</span>);  <span class="comment">% K_i从-1到300</span>
+poles_all = <span class="built_in">zeros</span>(<span class="built_in">length</span>(Ki_range), <span class="number">3</span>);
+
+<span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="built_in">length</span>(Ki_range)
+    Ki = Ki_range(<span class="built_in">i</span>);
+    coeffs = [<span class="number">5</span>, <span class="number">35.5</span>, <span class="number">20</span>, Ki];  <span class="comment">% 闭环特征方程：5s^3 + 35.5s^2 + 20s + Ki = 0</span>
+    poles = roots(coeffs);     
+    poles_all(<span class="built_in">i</span>, :) = poles;  
+<span class="keyword">end</span>
+
+<span class="built_in">hold</span> on; grid on; axis equal;
+
+<span class="comment">% 绘制3条根轨迹分支</span>
+<span class="built_in">plot</span>(<span class="built_in">real</span>(poles_all(:,<span class="number">1</span>)), <span class="built_in">imag</span>(poles_all(:,<span class="number">1</span>)), <span class="string">&#x27;b-&#x27;</span>, <span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">1.2</span>);
+<span class="built_in">plot</span>(<span class="built_in">real</span>(poles_all(:,<span class="number">2</span>)), <span class="built_in">imag</span>(poles_all(:,<span class="number">2</span>)), <span class="string">&#x27;r-&#x27;</span>, <span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">1.2</span>);
+<span class="built_in">plot</span>(<span class="built_in">real</span>(poles_all(:,<span class="number">3</span>)), <span class="built_in">imag</span>(poles_all(:,<span class="number">3</span>)), <span class="string">&#x27;g-&#x27;</span>, <span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">1.2</span>);
+<span class="built_in">plot</span>([<span class="number">0</span>,<span class="number">0</span>], [<span class="number">-50</span>,<span class="number">50</span>], <span class="string">&#x27;k--&#x27;</span>, <span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">1</span>);
+
+<span class="comment">% 标注K_i=0时的初始极点</span>
+poles_Ki0 = roots([<span class="number">5</span>,<span class="number">35.5</span>,<span class="number">20</span>,<span class="number">0</span>]);
+<span class="built_in">plot</span>(<span class="built_in">real</span>(poles_Ki0), <span class="built_in">imag</span>(poles_Ki0), <span class="string">&#x27;ko&#x27;</span>, <span class="string">&#x27;MarkerSize&#x27;</span>,<span class="number">8</span>);
+text(<span class="built_in">real</span>(poles_Ki0), <span class="built_in">imag</span>(poles_Ki0), <span class="string">&#x27;K_i=0&#x27;</span>, <span class="string">&#x27;FontSize&#x27;</span>,<span class="number">9</span>);
+
+<span class="comment">% 标题与轴标签</span>
+xlabel(<span class="string">&#x27;实轴&#x27;</span>); ylabel(<span class="string">&#x27;虚轴&#x27;</span>);
+title(<span class="string">&#x27;PID系统根轨迹&#x27;</span>);
+<span class="built_in">legend</span>(<span class="string">&#x27;极点分支1&#x27;</span>,<span class="string">&#x27;极点分支2&#x27;</span>,<span class="string">&#x27;极点分支3&#x27;</span>,<span class="string">&#x27;Location&#x27;</span>,<span class="string">&#x27;best&#x27;</span>);</code></pre>
+<p align="center">
+<a> <img width="600" src="/images/Drone-easyPID/pic13.png"> </a> <br>
+<b>图14：PID系统根轨迹</b>
+</p>
+<p align="center">
+<a> <img width="200" src="/images/Drone-easyPID/pic14.png"> </a> <br>
+<b>图15：临界点处的Ki值</b>
+</p>
+<p>  运行得到如上图所示的图像。可以发现，随着<span
+class="math inline">\(K_i\)</span>的增大，系统并不会变得更加稳定，反而会变得更加不稳定。当<span
+class="math inline">\(K_i&gt;141.856\)</span>时，系统的闭环特征方程根会出现在右半平面上，此时系统是发散的。</p>
+<p align="center">
+<a> <img width="500" src="/images/Drone-easyPID/pic15.png"> </a> <br>
+<b>图16：不同Ki的单位阶跃响应</b>
+</p>
+<p>  结合图16以及以上分析，<span
+class="math inline">\(K_i\)</span>的值不能取太大。为满足控制目标，可以取<span
+class="math inline">\(K_i=1\)</span>，甚至取<span
+class="math inline">\(K_i=0\)</span>去掉积分环节都可以。</p>
+<p align="center">
+<a> <img width="250" src="/images/Drone-easyPID/pic16.png"> </a> <br>
+<b>图17：Ki为1时的时域性能指标</b>
+</p>
+<hr />
+<h2
+id="频域分析nyquist图与bode图绘制">频域分析：Nyquist图与Bode图绘制</h2>
+<p>  现在我们已经确定了PID三个参数的值：</p>
+<p><span class="math display">\[
+K_p=20,~~K_i=1,~~K_d=35
+\]</span></p>
+<p>  此时系统开环传函为：</p>
+<p><span class="math display">\[
+G(s)=\frac{35s^2+20s+1}{5s^3+0.5s^2}
+\]</span></p>
+<p>  闭环传函为：</p>
+<p><span class="math display">\[
+\Phi_{PID}(s)=\frac{35s^2+20s+1}{5s^3+35.5s^2+20s+1}
+\]</span></p>
+<p>  可以根据开环传函分析其频率特性。将<span
+class="math inline">\(s=j\omega\)</span>代入得到：</p>
+<p><span class="math display">\[
+G(j\omega)=\frac{35\omega^2-1-20\omega
+j}{0.5\omega^2+5\omega^3j}=\frac{\sqrt{(35\omega^2-1)^2+(20\omega)^2}e^{j\arctan{\frac{20\omega}{1-35\omega^2}}}}{\sqrt{(0.5\omega^2)^2+(5\omega^3)^2}e^{j\arctan{10\omega}}}
+\]</span></p>
+<p>  所以系统的幅频特性和相频特性分别为：</p>
+<p><span class="math display">\[
+A(\omega)=\frac{1}{5\omega^2}\sqrt{\frac{(35\omega^2-1)^2+400\omega^2}{0.01+\omega^2}}
+\]</span></p>
+<p><span class="math display">\[
+\phi(\omega)=-\pi + \begin{cases}
+\arctan{\frac{20\omega}{1-35\omega^2}}-\arctan10\omega &amp;
+0&lt;\omega&lt;\frac{1}{\sqrt{35}} \\
+\pi-\arctan{\frac{20\omega}{35\omega^2-1}}-\arctan10\omega &amp;
+\omega&gt;\frac{1}{\sqrt{35}}
+\end{cases}
+\]</span></p>
+<h3 id="nyquist图绘制">Nyquist图绘制</h3>
+<p>  基于系统的频率特性，可以很容易在MATLAB中画出其奈氏图。运行如下代码：</p>
+<pre><code class="highlight matlab">num = [<span class="number">35</span> <span class="number">20</span> <span class="number">1</span>];
+den = [<span class="number">5</span> <span class="number">0.5</span> <span class="number">0</span> <span class="number">0</span>];
+G = tf(num, den);
+
+nyquistplot(G); 
+<span class="built_in">hold</span> on;
+<span class="built_in">plot</span>(<span class="number">-1</span>, <span class="number">0</span>, <span class="string">&#x27;rx&#x27;</span>, <span class="string">&#x27;MarkerSize&#x27;</span>, <span class="number">10</span>, <span class="string">&#x27;LineWidth&#x27;</span>, <span class="number">2</span>);
+text(<span class="number">-1</span>, <span class="number">0.5</span>, <span class="string">&#x27;(-1,j0)临界点&#x27;</span>, <span class="string">&#x27;FontSize&#x27;</span>, <span class="number">10</span>);
+title(<span class="string">&#x27;开环传函奈奎斯特图&#x27;</span>);
+xlabel(<span class="string">&#x27;实轴&#x27;</span>); ylabel(<span class="string">&#x27;虚轴&#x27;</span>);</code></pre>
+<p>  得到系统的奈氏图。</p>
+<p align="center">
+<a> <img width="500" src="/images/Drone-easyPID/pic17.png"> </a> <br>
+<b>图18：奈奎斯特图</b>
+</p>
+<p>  可以根据上图结合奈奎斯特判据来验证系统的稳定性。正负穿越表示的奈奎斯特判据的表达式为：</p>
+<p><span class="math display">\[
+Z=P+2(N_--N_+)
+\]</span></p>
+<p>根据奈奎斯特图像可以看出<span
+class="math inline">\(N_-=0,~N_+=0\)</span>，并且根据之前的分析我们知道<span
+class="math inline">\(P=0\)</span>。因此<span
+class="math inline">\(Z=0\)</span>，所以系统是稳定的。</p>
+<h3 id="bode图绘制">Bode图绘制</h3>
+<p>  在MATLAB中使用类似的方法，可以绘制系统的Bode图。运行以下代码：</p>
+<pre><code class="highlight matlab">num = [<span class="number">35</span> <span class="number">20</span> <span class="number">1</span>];
+den = [<span class="number">5</span> <span class="number">0.5</span> <span class="number">0</span> <span class="number">0</span>];
+G = tf(num, den);
+
+bode(G);
+grid on; 
+<span class="built_in">hold</span> on;
+title(<span class="string">&#x27;开环传递函数Bode图&#x27;</span>);
+xlabel(<span class="string">&#x27;频率 (rad/s)&#x27;</span>);</code></pre>
+<p>  得到系统的Bode图</p>
+<p align="center">
+<a> <img width="500" src="/images/Drone-easyPID/pic18.png"> </a> <br>
+<b>图19：伯德图</b>
+</p>
+<p>  结合先前计算得到幅频特性表达式<span
+class="math inline">\(A(\omega)\)</span>和相频特性表达式<span
+class="math inline">\(\phi(\omega)\)</span>可以看出计算没有问题。</p>
+<hr />
+<h2 id="优化程度分析与总结">优化程度分析与总结</h2>
+<p>  对于这个实验假设的简易无人机飞行高度控制系统，我们使用了PID控制器让系统对于单位阶跃响应能够快速达到控制目标。其中参数分别为：</p>
+<p><span class="math display">\[K_p=20,~~K_i=1,~~K_d=35\]</span></p>
+<p>  现在可以结合无PID情况对比一下加上PID控制器以后的系统时域性能指标。</p>
+<table>
+<thead>
+<tr>
+<th>性能指标</th>
+<th>无PID</th>
+<th>有PID</th>
+<th>优化程度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上升时间<span class="math inline">\(t_r\)</span></td>
+<td>7.069s</td>
+<td>0.27s</td>
+<td>快了26倍</td>
+</tr>
+<tr>
+<td>超调量<span class="math inline">\(\sigma\%\)</span></td>
+<td>70.23%</td>
+<td>4.96%</td>
+<td>小了14倍</td>
+</tr>
+<tr>
+<td>调节时间<span class="math inline">\(t_s\)</span></td>
+<td>70s</td>
+<td>2.67s</td>
+<td>快了26倍</td>
+</tr>
+</tbody>
+</table>
+<p align="center">
+<a> <img width="500" src="/images/Drone-easyPID/pic19.png"> </a> <br>
+<b>图20：有无PID的对比</b>
+</p>
+<p>  结合表格以及图20中的数据，无 PID
+的开环系统呈现强振荡、慢收敛的不稳定特性，完全无法满足无人机高度悬停的工程需求；而
+PID 通过 “比例（快速响应误差）+ 积分（消除稳态偏差）+ 微分（抑制超调）”
+的协同作用，将系统从 “不可用” 优化为 “稳定可靠”，验证了 PID
+控制器在低空无人机飞控中的核心适配性。</p>
+<p>  本次实验以 “无人机高度控制” 为载体，明确了 PID
+控制器的优化价值：在简易被控对象下，通过整定参数。可同时实现
+“快速响应、低超调、短调节时间”
+的时域性能，为实际无人机飞控系统的控制器设计提供了基础验证与参数整定思路。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/12/22/DaGeDeMian/" rel="prev" title="大哥的面">
+                  <i class="fa fa-angle-left"></i> 大哥的面
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Egger</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

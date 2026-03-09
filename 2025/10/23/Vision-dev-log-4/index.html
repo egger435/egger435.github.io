@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"egger435.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":false,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":500},"language":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="今天搞了一下午加一个晚上，没有完成任何东西，可恶。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vision开发日志4">
+<meta property="og:url" content="https://egger435.github.io/2025/10/23/Vision-dev-log-4/index.html">
+<meta property="og:site_name" content="EGGER">
+<meta property="og:description" content="今天搞了一下午加一个晚上，没有完成任何东西，可恶。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-10-23T14:56:06.000Z">
+<meta property="article:modified_time" content="2026-03-09T14:59:38.440Z">
+<meta property="article:author" content="Egger">
+<meta property="article:tag" content="技术博客">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://egger435.github.io/2025/10/23/Vision-dev-log-4/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://egger435.github.io/2025/10/23/Vision-dev-log-4/","path":"2025/10/23/Vision-dev-log-4/","title":"Vision开发日志4"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Vision开发日志4 | EGGER</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">EGGER</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">5</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">26</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Egger</p>
+  <div class="site-description" itemprop="description">Hello im egger</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/egger435" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;egger435" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://egger435.github.io/2025/10/23/Vision-dev-log-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Egger">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="EGGER">
+      <meta itemprop="description" content="Hello im egger">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Vision开发日志4 | EGGER">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vision开发日志4
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-10-23 22:56:06" itemprop="dateCreated datePublished" datetime="2025-10-23T22:56:06+08:00">2025-10-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-03-09 22:59:38" itemprop="dateModified" datetime="2026-03-09T22:59:38+08:00">2026-03-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>  今天搞了一下午加一个晚上，没有完成任何东西，可恶。</p>
+<span id="more"></span>
+<p>  本来昨天在测试将树莓派的视频流传输到Unity上的时候，几乎要成功了。我都在Unity的页面上看到树莓派摄像头拍下的我的脸一闪而过，虽然传输很不连贯，断断续续的并且有大量的乱码，但是至少我看到希望了。</p>
+<p>  因此，我以为今天马上就要完成视频流传输了。结果折腾了一个下午都没有成功。原先我的方案是这样的：树莓派的Python端实时捕捉摄像头画面，为每一帧加上4个字节的帧头，然后通过udp传输至Unity，Unity在接收到4字节的帧头后预测帧长，然后开始接收分片的帧数据，在接收的帧数据达到预测帧长的时候就说明接收完一帧了，那么Unity就可以开始渲染这一帧的画面，渲染完成后开始接受下一帧的帧头，如此循环往复。</p>
+<p>  这个想法虽然看起来很美好，但是存在一些问题。首先是Unity端渲染一帧的数据和树莓派端发送一帧的数据是不同步的，这就会导致当Unity渲染完成这一帧之后，理应要接收到下一帧的4字节帧头，却接收到了树莓派发来的1024字节的帧分片。如此就会让Unity端的算法无法正确执行，所以算法需要有帧同步的机制。但是即使在有了帧同步的机制后，这种算法在视频流传输上的效率是很低的，受限于带宽和树莓派的处理性能以及网络环境，基本上帧率只有个位数，这对于Vision来说是很糟糕的。</p>
+<p>  于是我开始寻求其它的解决办法，我尝试让树莓派端不再使用Python进行视频流的捕获，而是直接使用rpicam-vid和ffmpeg来进行视频流的h.264编码然后推流至我的阿里云ecs服务器，再在Unity端尝试使用ffmpeg进行h.264解码然后显示画面。</p>
+<p>  这个想法同样也很美好，但是实现起来就遭遇了诸多困难。首先是如何在Unity中使用ffmpeg来对视频流进行解码的问题。我找遍了很多地方，都没有找到关于这个问题的确切解决方案，我只能自己摸索这前进。当我把FFmpeg.AutoGen的引用成功导进我的Unity工程中后，发现ai给出的代码又有问题，不能使用。于是我开始找文档，又发现看不懂。几经尝试，最终放弃，决定换一种解决方案。</p>
+<p>  根据ai提供的信息，我可以在Unity端直接使用videoplayer组建来播放rtsp的视频流，这样依然需要让树莓派端将摄像头捕获的视频推流至我的ecs服务器上。此外还需要在我的服务器上配置mediamtx的服务器，这样Unity通过mediamtx来进行视频画面的显示了。但是在实现的过程中第一关就给我卡住了，在服务器上下载mediamtx要下两个小时，卧靠这也太慢了，牛魔的阿里云就不能多给我点带宽吗，难道就因为我是试用吗。我一度想要充钱了，不过好在之后下载速度变快了。在成功下载好后，开始写入配置文件。我始终搞不清楚在stream那一个项目中究竟要填写什么信息，网上也没有可用的参考。我只能跟着配置文件里的注释和ai给的意见一点一点尝试。</p>
+<p>  搞了好久好久，又是udp，又是tcp，又是rstp，又是rtp，七七八八的协议和端口把我搞的晕头转向。最终我认输了，决定返璞归真，直接使用配置文件里面的默认设置，然后启动mediamtx服务器，没想到成功启动了，而且能够正确接收树莓派端发来的视频流。那么接下来的任务就是让Unity端显示画面了。</p>
+<p>  没想到这一环境依旧折磨。首先是我在Unity上写好接收视频流的代码，开始运行报错：对应URL中的是空数据。也就是说根本没有视频流，我靠真是服了。我在浏览器中输入这个URL测试，明明能显示树莓派摄像头的画面啊，姑且先不管延迟的问题。明明有数据为什么Unity的videoplayer播放不了呢。很是奇怪。由于快要熄灯了，我也来不及找这个问题的解决方案了，只能悻悻收拾东西准备关机了。</p>
+<p>  好，现在再说回延迟的问题。当我在浏览器输入视频流的URL时候，电脑打开potplayer开始播放，这让我喜出望外。但是两秒之后我发现不对劲，这尼玛延迟也太大了，我在摄像头上挥动下手指，两秒后才给出反应。我估计这要是在Unity端显示的话延迟也会很大，太可恶了，这个方案虽然解决了帧率低的问题，但是这延迟根本接受不了啊。</p>
+<p>  看来我又得另求方法了。或许借鉴微信视频聊天是一个不错的尝试。可惜接下来b事有点多，Vision的研发得先放一边了，shit！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/" rel="tag"># 技术博客</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/10/19/Vision-dev-log-3/" rel="prev" title="Vision开发日志3">
+                  <i class="fa fa-angle-left"></i> Vision开发日志3
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/10/24/Vision-dev-log-5/" rel="next" title="Vision开发日志5">
+                  Vision开发日志5 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Egger</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

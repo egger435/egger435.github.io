@@ -30,7 +30,7 @@
 <meta property="og:description" content="今天搞了好久，让Unity和树莓派建立通讯。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-10-15T22:34:34.000Z">
-<meta property="article:modified_time" content="2026-07-12T16:37:29.732Z">
+<meta property="article:modified_time" content="2026-07-12T16:40:58.649Z">
 <meta property="article:author" content="Egger">
 <meta property="article:tag" content="技术博客">
 <meta name="twitter:card" content="summary">
@@ -258,7 +258,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-07-12 16:37:29" itemprop="dateModified" datetime="2026-07-12T16:37:29+00:00">2026-07-12</time>
+      <time title="Modified: 2026-07-12 16:40:58" itemprop="dateModified" datetime="2026-07-12T16:40:58+00:00">2026-07-12</time>
     </span>
 
   
@@ -273,9 +273,7 @@
     <div class="post-body" itemprop="articleBody"><p>  今天搞了好久，让Unity和树莓派建立通讯。</p>
 <span id="more"></span>
 <p>  前两天采用了MQTT方案，目前许多物联网设备都采用这个协议通信。通过MQTT协议让Unity和树莓派的Python端建立通信，中间通过emqx提供的公用broker进行订阅消息的转发。原理很简单，就是客户端可以在broker服务器上建立和订阅topic，向这个topic发送消息，之后凡是订阅这个topic的机器都可以接收到发来的消息，具体在Unity端和树莓派端实现起来也容易，github上也有现成的模板，但是有一个问题就是延迟有点大。经过测试延迟大概在200ms到400ms之间，这对于远程控制小车这种实时性比较高的场景来说还是太糟糕了。</p>
-<p>  于是今天尝试UDP方案，由于UDP是无连接的不可靠的传输协议，因此时延较低适合实时性要求高的使用场景。我一个下午都在尝试让Unity和树莓派建立链接。在配置好Unity端和树莓派Python端的socket的后，进行本地通信。时延大大降低，本地测试几乎可以降低到50ms以下。在我充满信心准备远程测试的时候，真正的大问题出现了。首先是要让树莓派暴露在公网上，能够让我的Unity端访问到，我一开始采用的Ngrok竟然不支持UDP协议。因此换用支持UDP协议的pinggy。在树莓派上配置pinggy的过程也是一波三折，先是使用命令行下载会报错400
-Bad
-request，在树莓派上访问不了pinggy的下载页面，于是我先在我的电脑上下载好Linux版本的pinggy，然后再用U盘拷贝到树莓派上。在树莓派上安装好pinggy后，注册了pinggy账号，然后根据网上的资料学习了一下配置命令在树莓派上开始配置隧道。配置隧道的时候老是连不上，我又求助AI，改了各种奇奇怪怪的配置文件，但是都无济于事。最后我又尝试一次就给它撂一边刷抖音去了，结果突然控制台有动静了，连上了！于是我赶紧配置Unity端的ip地址和端口，开始测试。由于我忘了Unity的C#脚本中ip地址和端口信息这两个变量是public的，因此我只在脚本里面改来改去，外边editor中的数据没有改，还是原先的树莓派本地ip和端口，我还寻思这UDP这么牛逼，时延就是低。后来我打包到手机上才发现了这个问题，赶紧把public改成private，再重新测试。终于露出了它的真面目，这时延居然比用MQTT的方案还高！nnd气死我了。看来免费的pinggy还是不太行，还是得充钱。</p>
+<p>  于是今天尝试UDP方案，由于UDP是无连接的不可靠的传输协议，因此时延较低适合实时性要求高的使用场景。我一个下午都在尝试让Unity和树莓派建立链接。在配置好Unity端和树莓派Python端的socket的后，进行本地通信。时延大大降低，本地测试几乎可以降低到50ms以下。在我充满信心准备远程测试的时候，真正的大问题出现了。首先是要让树莓派暴露在公网上，能够让我的Unity端访问到，我一开始采用的Ngrok竟然不支持UDP协议。因此换用支持UDP协议的pinggy。在树莓派上配置pinggy的过程也是一波三折，先是使用命令行下载会报错400 Bad request，在树莓派上访问不了pinggy的下载页面，于是我先在我的电脑上下载好Linux版本的pinggy，然后再用U盘拷贝到树莓派上。在树莓派上安装好pinggy后，注册了pinggy账号，然后根据网上的资料学习了一下配置命令在树莓派上开始配置隧道。配置隧道的时候老是连不上，我又求助AI，改了各种奇奇怪怪的配置文件，但是都无济于事。最后我又尝试一次就给它撂一边刷抖音去了，结果突然控制台有动静了，连上了！于是我赶紧配置Unity端的ip地址和端口，开始测试。由于我忘了Unity的C#脚本中ip地址和端口信息这两个变量是public的，因此我只在脚本里面改来改去，外边editor中的数据没有改，还是原先的树莓派本地ip和端口，我还寻思这UDP这么牛逼，时延就是低。后来我打包到手机上才发现了这个问题，赶紧把public改成private，再重新测试。终于露出了它的真面目，这时延居然比用MQTT的方案还高！nnd气死我了。看来免费的pinggy还是不太行，还是得充钱。</p>
 <p>  最后我又退回了MQTT方案，但是这次我不打算使用emqx提供的公用broker，我打算用mosquitto在树莓派上自建一个broker，这样时延应该要小一些，不过得需要公网ip。但是公网ip很难搞到，估计最后还是得绕回到pinggy上</p>
 
     </div>

@@ -30,7 +30,7 @@
 <meta property="og:description" content="校电赛终于结束了，说实话效果还算不错，尤其是对于我们十分落后的硬件而言。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-12-05T15:01:51.000Z">
-<meta property="article:modified_time" content="2026-07-13T08:24:25.600Z">
+<meta property="article:modified_time" content="2026-07-13T08:27:46.701Z">
 <meta property="article:author" content="Egger">
 <meta name="twitter:card" content="summary">
 
@@ -115,7 +115,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">5</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">27</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">5</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">26</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -178,7 +178,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -257,7 +257,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-07-13 08:24:25" itemprop="dateModified" datetime="2026-07-13T08:24:25+00:00">2026-07-13</time>
+      <time title="Modified: 2026-07-13 08:27:46" itemprop="dateModified" datetime="2026-07-13T08:27:46+00:00">2026-07-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -281,7 +281,8 @@
     <div class="post-body" itemprop="articleBody"><p>  校电赛终于结束了，说实话效果还算不错，尤其是对于我们十分落后的硬件而言。</p>
 <span id="more"></span>
 <p>  树莓派是找学长白嫖的，摄像头是拼夕夕14块先用后付的，stm32是f103c8t6的，电机编码器精度是不够的，红外对管有个是坏的，6050是接触不良的，oled屏幕是3块钱的，摄像头延伸架子是撞断的，车架是stm32学习套件自带的，滚珠轴承是生锈的，车轮是打滑的。在以上种种限制下，我们竟然能够做出来一个能完成任务的智能循迹小车，真是不可思议。</p>
-<p>  说起此次参赛的原因，我倒也算是受邀参加。前段时间一直在做我的EGGER Vision项目，然后隔壁寝室的老哥经常路过。看到我在捣鼓这些小玩意，又正好他自己也在学一些嵌入式开发的东西。于是我俩一拍即合，打算一起参加明年的智能车竞赛。不过在此之前，可以借此次校电赛的机会积累经验。毕竟我还从未有过此类比赛的经验。</p>
+<p>  说起此次参赛的原因，我倒也算是受邀参加。前段时间一直在做我的EGGER
+Vision项目，然后隔壁寝室的老哥经常路过。看到我在捣鼓这些小玩意，又正好他自己也在学一些嵌入式开发的东西。于是我俩一拍即合，打算一起参加明年的智能车竞赛。不过在此之前，可以借此次校电赛的机会积累经验。毕竟我还从未有过此类比赛的经验。</p>
 <p>  刚开始被老哥拉进队伍之后，我原以为都是大佬可以带我飞，而我只需要躺赢看他们操作就行。后来发现事情不太对。</p>
 <p>  首先是在和那位老哥第一天接触后，我就发现了一个大问题：他的电脑上充满了开屏广告以及各种垃圾软件，时不时就会跳出来一个弹窗。这对于一个计算机专业的学生来说是非常不可思议的。</p>
 <p>  然后在赛题发布后，我们需要开始对项目进行分析、计划与筹备。在这一阶段首先需要的是为项目设计方案并构建总体框架，需要从宏观上去思考，这一步是抽象的，不是具体的。有关具体功能实现的问题这类旁枝末节的内容不应该在这一环节被重点讨论。然而，我的队友们似乎有点本末倒置了。尤其是那位老哥，总是针对于某一个环节大做文章。</p>
@@ -301,7 +302,8 @@
 <p>  虽然小车速度提不起来，但是好在我们有个保底，起码它能顺利跑完两圈了。</p>
 <p>  在完成了OLED驱动和基础部分的循迹控制后，我的任务就只剩下了树莓派上数字识别的部署了。最开始，实现数字识别这个任务是交由另外两位女生去做的。她们顺利实现在自己电脑上进行静态和动态的数字识别。但是由于是在自己电脑上运行的，因此我在将工程移植到树莓派上之前需要对图像处理的代码进行优化，以尽可能减少运算量以及提高识别准确率。</p>
 <p>  我在接手了她们的工程后，首先让我最惊讶的是，发给我的Python代码竟然是写在word文档里面的！？我还是第一次遇到这种情况，大为震撼。第二点是在代码中有着大量的ai注释痕迹，似乎她们把ai调教得不错。但是关于她们对这个代码实际了解多少以及能否清楚各个函数是用来干什么的，这我就不得而知了。</p>
-<p>  我不得不对这些代码进行大刀阔斧地改动。或许是受到前段时间阅读马斯克传的影响，我一上来就将无关的图像处理函数统统删去，只留下二值化。马斯克主张删掉没有用的东西，“如果删除的部分最后加回不到 10%，说明删得还不够”。事实证明我删掉的太多了，对于只有二值化的数字图像根本无法实现识别要求。为了提高准确率我不得不加回一部分图像处理的函数。最终的实现效果确实还不错，我可以很自信的说静态识别的准确率达到了100%！但是动态识别的话就一言难尽了。由于摄像头硬件性能的限制，一旦小车开始跑起来，那么捕捉到的一帧画面就是模糊的，根本识别不了数字，为此我也无能为力。</p>
+<p>  我不得不对这些代码进行大刀阔斧地改动。或许是受到前段时间阅读马斯克传的影响，我一上来就将无关的图像处理函数统统删去，只留下二值化。马斯克主张删掉没有用的东西，“如果删除的部分最后加回不到
+10%，说明删得还不够”。事实证明我删掉的太多了，对于只有二值化的数字图像根本无法实现识别要求。为了提高准确率我不得不加回一部分图像处理的函数。最终的实现效果确实还不错，我可以很自信的说静态识别的准确率达到了100%！但是动态识别的话就一言难尽了。由于摄像头硬件性能的限制，一旦小车开始跑起来，那么捕捉到的一帧画面就是模糊的，根本识别不了数字，为此我也无能为力。</p>
 <p>  赛题的最后一个要求是让小车实现无引导线八字绕行。由于是无引导线，摄像头便失去了用武之地。我们决定用陀螺仪来实现惯性制导。然而我们没有像那些国赛选手一样有很高精度的陀螺仪器件，只有最最低端的mpu6050，它的控制精度远远不足以支撑小车准确完成八字绕行的任务。不过我们还是没有放弃，即使是使用开环控制，也要让小车能够跑起来，哪怕跑得不好。</p>
 <p>  说起这个6050，我们真是为它操碎了心。首先是它的初始化，不知道是接触不良还是本身硬件问题，iic通信的初始化每次都要复位好几次才行。然后是零漂问题，一旦出现零漂就会让开环控制的角度值出现很大的偏差，导致无法完成八字绕行的任务。即使我们在比赛前不断安抚机魂，它仍然在比赛最后一圈中出现零漂，最后一圈的成绩也因此无效了，可惜啊可惜。</p>
 <p>  不过总体上来看，我们的作品完成度还是挺高的。即使最后没有拿奖，我还是积累了不少的经验。求人不如求己，哈哈。</p>

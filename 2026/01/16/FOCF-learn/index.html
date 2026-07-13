@@ -31,7 +31,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://egger435.github.io/images/FOCF-learn/pic1.png">
 <meta property="article:published_time" content="2026-01-16T14:43:53.000Z">
-<meta property="article:modified_time" content="2026-07-13T08:24:25.600Z">
+<meta property="article:modified_time" content="2026-07-13T08:27:46.701Z">
 <meta property="article:author" content="Egger">
 <meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary">
@@ -118,7 +118,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">5</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">27</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">5</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">26</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -169,7 +169,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%A7%92%E9%80%9F%E5%BA%A6%E7%A7%AF%E5%88%86%E5%BE%97%E5%88%B0%E8%A7%92%E5%BA%A6%E5%80%BC"><span class="nav-number">1.</span> <span class="nav-text">1. 角速度积分得到角度值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-number">1.2.</span> <span class="nav-text">局限性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%8A%A0%E9%80%9F%E5%BA%A6%E6%95%B0%E6%8D%AE%E5%8F%8D%E6%AD%A3%E5%88%87%E5%BE%97%E5%88%B0%E8%A7%92%E5%BA%A6%E5%80%BC"><span class="nav-number">2.</span> <span class="nav-text">2. 加速度数据反正切得到角度值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95-2"><span class="nav-number">2.1.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%80%E9%99%90%E6%80%A7-2"><span class="nav-number">2.2.</span> <span class="nav-text">局限性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%80%9A%E8%BF%87%E4%BA%92%E8%A1%A5%E6%BB%A4%E6%B3%A2%E4%BF%AE%E6%AD%A3%E8%A7%92%E5%BA%A6%E5%80%BC"><span class="nav-number">3.</span> <span class="nav-text">3. 通过互补滤波修正角度值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">3.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.2.</span> <span class="nav-text">实现</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%92%E9%80%9F%E5%BA%A6%E7%A7%AF%E5%88%86%E5%BE%97%E5%88%B0%E8%A7%92%E5%BA%A6%E5%80%BC"><span class="nav-number">1.</span> <span class="nav-text">1. 角速度积分得到角度值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-number">1.2.</span> <span class="nav-text">局限性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A0%E9%80%9F%E5%BA%A6%E6%95%B0%E6%8D%AE%E5%8F%8D%E6%AD%A3%E5%88%87%E5%BE%97%E5%88%B0%E8%A7%92%E5%BA%A6%E5%80%BC"><span class="nav-number">2.</span> <span class="nav-text">2. 加速度数据反正切得到角度值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95-1"><span class="nav-number">2.1.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%80%E9%99%90%E6%80%A7-1"><span class="nav-number">2.2.</span> <span class="nav-text">局限性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E4%BA%92%E8%A1%A5%E6%BB%A4%E6%B3%A2%E4%BF%AE%E6%AD%A3%E8%A7%92%E5%BA%A6%E5%80%BC"><span class="nav-number">3.</span> <span class="nav-text">3. 通过互补滤波修正角度值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">3.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.2.</span> <span class="nav-text">实现</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -182,7 +182,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -261,7 +261,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-07-13 08:24:25" itemprop="dateModified" datetime="2026-07-13T08:24:25+00:00">2026-07-13</time>
+      <time title="Modified: 2026-07-13 08:27:46" itemprop="dateModified" datetime="2026-07-13T08:27:46+00:00">2026-07-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -285,32 +285,41 @@
     <div class="post-body" itemprop="articleBody"><p>  最近在做轮腿小车，其中需要通过陀螺仪获取小车的实时角度值。学习了一下有关互补滤波的内容，在此记录一下。</p>
 <span id="more"></span>
 <p>  互补滤波的核心是融合陀螺仪和加速度计的数据，用陀螺仪保证动态响应，用加速度计修正长期漂移，输出稳定且实时的角度估计。</p>
-<p>  陀螺仪检测系统的三轴角速度值，加速度计检测三轴的加速度值（在静止状态下，主要检测重力加速度的三轴分量）。根据以上传感器数据，我们需要得到系统的实时姿态角度有两种办法：1. 通过陀螺仪给出的角速度数据积分得到角度值；2. 通过加速度计给出的加速度数据进行反正切运算得到角度值。</p>
-<h2 id="1-角速度积分得到角度值">1. 角速度积分得到角度值</h2>
+<p>  陀螺仪检测系统的三轴角速度值，加速度计检测三轴的加速度值（在静止状态下，主要检测重力加速度的三轴分量）。根据以上传感器数据，我们需要得到系统的实时姿态角度有两种办法：1.
+通过陀螺仪给出的角速度数据积分得到角度值；2.
+通过加速度计给出的加速度数据进行反正切运算得到角度值。</p>
+<h2 id="角速度积分得到角度值">1. 角速度积分得到角度值</h2>
 <h3 id="方法">方法</h3>
-<p>  我们知道，在极小的一段时间$\Delta t$内可以将系统的运动视为匀速。因此这段时间内转过的角度为$\Delta \theta = \omega \Delta t$。对其进行积分就可以很容易得到当前的角度值：</p>
-<p>$$\theta_{gyro} = \int_0^t\omega dt$$</p>
+<p>  我们知道，在极小的一段时间<span class="math inline">\(\Delta
+t\)</span>内可以将系统的运动视为匀速。因此这段时间内转过的角度为<span
+class="math inline">\(\Delta \theta = \omega \Delta
+t\)</span>。对其进行积分就可以很容易得到当前的角度值：</p>
+<p><span class="math display">\[\theta_{gyro} = \int_0^t\omega
+dt\]</span></p>
 <h3 id="局限性">局限性</h3>
 <p>  但是这种方法存在一个问题，就是从陀螺仪获取的角速度数据每时每刻都存在误差，而积分这种操作会将这种误差累积导致积分得到的角度值存在漂移。而这种漂移误差在低频段会被积分放大，最终主导输出结果，使得角度严重偏离真实值。而在高频场景下，例如小车快速晃动，此时陀螺仪的有效角速度信号远大于低频漂移的信号，此时对最终角度的影响可以忽略。</p>
 <p>  所以总结一下，通过角速度积分得到的角度值在动态情况下表现尚可，而在静态情况下表现欠佳。</p>
-<h2 id="2-加速度数据反正切得到角度值">2. 加速度数据反正切得到角度值</h2>
-<h3 id="方法-2">方法</h3>
+<h2 id="加速度数据反正切得到角度值">2. 加速度数据反正切得到角度值</h2>
+<h3 id="方法-1">方法</h3>
 <p align="center">
-  <a>
-    <img width="500" src="/images/FOCF-learn/pic1.png">
-  </a>
+<a> <img width="500" src="/images/FOCF-learn/pic1.png"> </a>
 </p>
-<p>  假定在静止状态下让系统绕y轴旋转一个角度$\theta$，根据以上分析可以很容易得出系统的俯仰角：</p>
-<p>$$\theta_{acc} = \arctan \frac{ax}{az}$$</p>
-<h3 id="局限性-2">局限性</h3>
+<p>  假定在静止状态下让系统绕y轴旋转一个角度<span
+class="math inline">\(\theta\)</span>，根据以上分析可以很容易得出系统的俯仰角：</p>
+<p><span class="math display">\[\theta_{acc} = \arctan
+\frac{ax}{az}\]</span></p>
+<h3 id="局限性-1">局限性</h3>
 <p>  但是这种方法同样也存在一个问题，就是高频段的振动干扰和运动加速度会掩盖有用的重力信号，无法准确获取静态角度参考。比如快速晃动小车，加速度计的输出是重力加速度、高频运动加速度的叠加，此时有用的重力信号被高频干扰淹没，无法通过加速度计计算出准确的角度。</p>
 <p>  总结一下，就是通过加速度反正切得到角度值在静态情况下表现尚可，而在动态情况下表现欠佳。</p>
-<h2 id="3-通过互补滤波修正角度值">3. 通过互补滤波修正角度值</h2>
+<h2 id="通过互补滤波修正角度值">3. 通过互补滤波修正角度值</h2>
 <p>  通过以上分析，我们可以发现陀螺仪和加速度计的频率特性是互补的。因此我们可以对其取长补短，在动态条件下更相信陀螺仪的数据，在静态条件下更相信加速度计的数据。</p>
 <h3 id="原理">原理</h3>
-<p>  通过设定权重参数$K$来选择我们是更相信陀螺仪的数据还是更相信加速度计的数据，所以最后的角度输出为：</p>
-<p>$$\theta_{out} = K * \theta_{gyro} + (1-K) * \theta_{acc}$$</p>
-<p>  权重参数$K$的具体选择需要根据系统的具体应用场景来分析。</p>
+<p>  通过设定权重参数<span
+class="math inline">\(K\)</span>来选择我们是更相信陀螺仪的数据还是更相信加速度计的数据，所以最后的角度输出为：</p>
+<p><span class="math display">\[\theta_{out} = K * \theta_{gyro} + (1-K)
+* \theta_{acc}\]</span></p>
+<p>  权重参数<span
+class="math inline">\(K\)</span>的具体选择需要根据系统的具体应用场景来分析。</p>
 <h3 id="实现">实现</h3>
 <p>具体实现代码如下：</p>
 <pre><code class="highlight c"><span class="comment">/*</span>

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"egger435.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":false,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":500},"language":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="LeetCode上的第一题：两数之和。   给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target 的那 两个 整数，并返回它们的数组下标。可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。可以按任意顺序返回答案。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="刷题届的abandon——两数之和">
+<meta property="og:url" content="https://egger435.github.io/2026/08/02/LC-1/index.html">
+<meta property="og:site_name" content="EGGER">
+<meta property="og:description" content="LeetCode上的第一题：两数之和。   给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target 的那 两个 整数，并返回它们的数组下标。可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。可以按任意顺序返回答案。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-08-02T15:34:45.000Z">
+<meta property="article:modified_time" content="2026-08-02T08:44:14.124Z">
+<meta property="article:author" content="Egger">
+<meta property="article:tag" content="算法题">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://egger435.github.io/2026/08/02/LC-1/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://egger435.github.io/2026/08/02/LC-1/","path":"2026/08/02/LC-1/","title":"刷题届的abandon——两数之和"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>刷题届的abandon——两数之和 | EGGER</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">EGGER</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">6</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">29</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Egger</p>
+  <div class="site-description" itemprop="description">Hello im egger</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/egger435" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;egger435" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://egger435.github.io/2026/08/02/LC-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Egger">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="EGGER">
+      <meta itemprop="description" content="Hello im egger">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="刷题届的abandon——两数之和 | EGGER">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          刷题届的abandon——两数之和
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-08-02 15:34:45 / Modified: 08:44:14" itemprop="dateCreated datePublished" datetime="2026-08-02T15:34:45+00:00">2026-08-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">做题笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>  LeetCode上的第一题：两数之和。</p>
+<p>  给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出
+和为目标值 target 的那 两个
+整数，并返回它们的数组下标。可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。可以按任意顺序返回答案。</p>
+<span id="more"></span>
+<p>示例 1：</p>
+<pre><code class="highlight plaintext">输入：nums = [2,7,11,15], target = 9
+输出：[0,1]
+解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。</code></pre>
+<p>示例 2：</p>
+<pre><code class="highlight plaintext">输入：nums = [3,2,4], target = 6
+输出：[1,2]</code></pre>
+<p>示例 3：</p>
+<pre><code class="highlight plaintext">输入：nums = [3,3], target = 6
+输出：[0,1]</code></pre>
+<p>提示：</p>
+<pre><code class="highlight plaintext">2 &lt;= nums.length &lt;= 104
+-109 &lt;= nums[i] &lt;= 109
+-109 &lt;= target &lt;= 109
+只会存在一个有效答案</code></pre>
+<p>  对于这道题目首先最容易想到的就是使用暴力枚举，通过两两比对两个数的和，看是否为target，代码如下。</p>
+<pre><code class="highlight cpp"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">twoSum</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span></span>
+<span class="function"></span>&#123;
+    <span class="type">int</span> n = nums.<span class="built_in">size</span>();
+    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)
+    &#123;
+        <span class="keyword">for</span> (<span class="type">int</span> j = i + <span class="number">1</span>; j &lt; n; j++)
+        &#123;
+            <span class="keyword">if</span> (nums[i] + nums[j] == targer)
+            &#123;
+                <span class="keyword">return</span> &#123;i, j&#125;;
+            &#125;
+        &#125;
+    &#125;
+    <span class="keyword">return</span> &#123;&#125;;
+&#125;</code></pre>
+<p>  这种情况下，由于两个for循环的嵌套，因此时间复杂度为<span
+class="math inline">\(O(n^2)\)</span>。</p>
+<p>  看看能不能继续优化。由于在暴力枚举的情况下，绝大多数时间都花费在这个过程中：对于一个数<code>nums[i]</code>，找剩下的数中是否存在一个<code>nums[j]</code>，使得两者和为target。也就是说第二层循环花费了太多的时间。</p>
+<p>  为了减少找这个<code>nums[j]</code>所花费的时间，我想到了一种办法——借助桶来实现空间换时间。</p>
+<p>  对于个<code>nums[i]</code>，我需要知道在剩下的数字中是否存在一个数为<code>target-nums[i]</code>。如果存在，则我要得到这个数的索引。因此，在开始前可以先遍历一遍整个数组，用一堆桶来标记每个数的索引位置，其中桶的索引就是这个数字，桶中存的数据就是这个数字在数组中的位置。</p>
+<p>  但是这样的话还有一个问题。在题目要求中，数组中的数字可以为负数，而桶的索引始终是正数。所以我选择使用一个二维数组来表示这堆桶，0表示负数，1表示正数。</p>
+<p>例如：</p>
+<pre><code class="highlight cpp">bucket[<span class="number">0</span>][<span class="number">7</span>] = <span class="number">2</span>;   <span class="comment">// 记录-7在数组中的索引为2</span>
+bucket[<span class="number">1</span>][<span class="number">48</span>] = <span class="number">8</span>;  <span class="comment">// 记录48在数组中的索引为8</span></code></pre>
+<p>  在有了这个桶之后，接下来对于每一个数<code>nums[i]</code>就只需要在编号为<code>target-num[i]</code>的桶中查看它的索引就行，若为-1，则表示没有这个需要的数，也就是说在数组中不存在一个数能够使得其与<code>nums[i]</code>的和为target，那就去看下一个数字了。</p>
+<p>代码如下：</p>
+<pre><code class="highlight cpp"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">twoSum</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>
+<span class="function"></span>&#123;
+    <span class="type">int</span> bucket[<span class="number">2</span>][<span class="number">10000001</span>];
+    <span class="built_in">memset</span>(bucket, <span class="number">-1</span>, <span class="built_in">sizeof</span>(bucket));
+    <span class="type">int</span> n = nums.<span class="built_in">size</span>();
+
+    <span class="comment">// 获取数组中每个数的坐标信息存在桶中</span>
+    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)
+    &#123;
+        <span class="keyword">if</span> (nums[i] &lt; <span class="number">0</span>)
+        &#123;
+            bucket[<span class="number">0</span>][-nums[i]] = i;
+        &#125;
+        <span class="keyword">else</span> <span class="keyword">if</span> (nums[i] == <span class="number">0</span>)
+        &#123;
+            bucket[<span class="number">0</span>][<span class="number">0</span>] = i;
+            bucket[<span class="number">1</span>][<span class="number">0</span>] = i;
+        &#125;
+        <span class="keyword">else</span>
+        &#123;
+            bucket[<span class="number">1</span>][nums[i]] = i;
+        &#125;
+    &#125;
+
+    <span class="type">int</span> rest;
+    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)
+    &#123;
+        rest = target - nums[i];
+        <span class="keyword">if</span> (rest &lt; <span class="number">0</span>)
+        &#123;
+            <span class="keyword">if</span> (bucket[<span class="number">0</span>][-rest] != <span class="number">-1</span> &amp;&amp; i != bucket[<span class="number">0</span>][-rest])
+            &#123;
+                <span class="keyword">return</span> &#123;i, bucket[<span class="number">0</span>][-rest]&#125;;
+            &#125;
+        &#125;
+        <span class="keyword">else</span> <span class="keyword">if</span> (rest == <span class="number">0</span>)
+        &#123;
+            <span class="keyword">if</span> (bucket[<span class="number">0</span>][<span class="number">0</span>] != <span class="number">-1</span> &amp;&amp; i != bucket[<span class="number">0</span>][<span class="number">0</span>])
+            &#123;
+                <span class="keyword">return</span> &#123;i, bucket[<span class="number">0</span>][<span class="number">0</span>]&#125;;
+            &#125;
+        &#125;
+        <span class="keyword">else</span>
+        &#123;
+            <span class="keyword">if</span> (bucket[<span class="number">1</span>][rest] != <span class="number">-1</span> &amp;&amp; i != bucket[<span class="number">1</span>][rest])
+            &#123;
+                <span class="keyword">return</span> &#123;i, bucket[<span class="number">1</span>][rest]&#125;;
+            &#125;
+        &#125;
+    &#125;
+
+    <span class="keyword">return</span> &#123;&#125;;
+&#125;</code></pre>
+<p>  这样一来两个for循环都是线性遍历数组，因此算法的时间复杂度为<span
+class="math inline">\(O(n)\)</span>。但是还有一个问题，空间开销太大了并且数组范围不够。若测试用例中有数大于了10000000，则会导致数组越界。因此这个算法只能提供一个空间换时间的思想。</p>
+<p>  为避免空间开销太大，可以使用cpp中的map容器来代替一个巨大的二维数组。</p>
+<pre><code class="highlight cpp"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">twoSum</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>
+<span class="function"></span>&#123;
+    map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; map;
+    <span class="type">int</span> n = nums.<span class="built_in">size</span>();
+    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)
+    &#123;
+        map[nums[i]] = i;
+    &#125;
+
+    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)
+    &#123;
+        <span class="keyword">if</span> (map.<span class="built_in">find</span>(target - nums[i]) != map.<span class="built_in">end</span>() &amp;&amp; i != map[target - nums[i]])
+        &#123;
+            <span class="keyword">return</span> &#123;i, map[target - nums[i]]&#125;;
+        &#125;
+    &#125;
+     <span class="keyword">return</span> &#123;&#125;;
+&#125;</code></pre>
+<p>  不过上面这个代码还可以继续优化。这两个线性for循环还可以进一步继续压缩为一个for循环。首先先初始化一个空的哈希表，对于数组中的每一个元素查看哈希表中是否存在能与其组成target的数，若不存在则将其索引位置加入哈希表中并查看下一个数。这样一来也不需要<code>i != map[target - nums[i]]</code>的判断了。因为数组里面的所有数只会被遍历一次，并且在遍历到这个数之前，哈希表中必定不存在这个数。</p>
+<p>代码如下：</p>
+<pre><code class="highlight cpp"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">twoSum</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>
+<span class="function"></span>&#123;
+    map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; hashtable;
+    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++)
+    &#123;
+        <span class="keyword">auto</span> j = hashtable.<span class="built_in">find</span>(target - nums[i]);
+        <span class="keyword">if</span> (j != hashtable.<span class="built_in">end</span>())
+        &#123;
+            <span class="keyword">return</span> &#123;i, hashtable[target - nums[i]]&#125;;
+        &#125;
+        hashtable[nums[i]] = i;
+    &#125;
+    <span class="keyword">return</span> &#123;&#125;;
+&#125;</code></pre>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95%E9%A2%98/" rel="tag"># 算法题</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/07/27/vibecoding/" rel="prev" title="vibecoding了一个博客编辑器">
+                  <i class="fa fa-angle-left"></i> vibecoding了一个博客编辑器
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Egger</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

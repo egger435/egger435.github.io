@@ -31,7 +31,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://egger435.github.io/images/mcts-in-go/1785989269244.png">
 <meta property="article:published_time" content="2026-08-05T23:03:30.000Z">
-<meta property="article:modified_time" content="2026-08-06T06:55:16.041Z">
+<meta property="article:modified_time" content="2026-08-06T07:17:18.985Z">
 <meta property="article:author" content="Egger">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="蒙特卡洛树搜索">
@@ -172,7 +172,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mcts%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-number">1.</span> <span class="nav-text">MCTS核心思想</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9"><span class="nav-number">1.1.</span> <span class="nav-text">选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A9%E5%B1%95"><span class="nav-number">1.2.</span> <span class="nav-text">扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%8B%9F"><span class="nav-number">1.3.</span> <span class="nav-text">模拟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E6%BA%AF"><span class="nav-number">1.4.</span> <span class="nav-text">回溯</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-number">2.</span> <span class="nav-text">流程图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A5alphago-zero%E4%B8%BA%E4%BE%8B%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">以AlphaGo Zero为例的应用</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MCTS%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-number">1.</span> <span class="nav-text">MCTS核心思想</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9"><span class="nav-number">1.1.</span> <span class="nav-text">选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A9%E5%B1%95"><span class="nav-number">1.2.</span> <span class="nav-text">扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%8B%9F"><span class="nav-number">1.3.</span> <span class="nav-text">模拟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E6%BA%AF"><span class="nav-number">1.4.</span> <span class="nav-text">回溯</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-number">2.</span> <span class="nav-text">流程图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A5AlphaGo-Zero%E4%B8%BA%E4%BE%8B%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">以AlphaGo Zero为例的应用</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -264,7 +264,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-08-06 06:55:16" itemprop="dateModified" datetime="2026-08-06T06:55:16+00:00">2026-08-06</time>
+      <time title="Modified: 2026-08-06 07:17:18" itemprop="dateModified" datetime="2026-08-06T07:17:18+00:00">2026-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -287,7 +287,7 @@
     
     <div class="post-body" itemprop="articleBody"><p>  对于围棋这种指数级搜索空间中，使用蒙特卡洛树搜索MCTS能够将有限的算力集中到最有希望的子树上。</p>
 <span id="more"></span>
-<h2 id="mcts核心思想">MCTS核心思想</h2>
+<h2 id="MCTS核心思想">MCTS核心思想</h2>
 <pre><code class="highlight mermaid">graph LR
     A(选择\n selection) --&gt; B(扩展\n expansion)
     B --&gt; C(模拟\n simulation)
@@ -295,16 +295,14 @@
     D --&gt; |重复多次| A</code></pre>
 <h3 id="选择">选择</h3>
 <p>  从根节点开始，根据UCB公式计算得到最大值的子节点。然后选择那个节点，不断向下搜索，知道到达底部的叶节点并等待下一步操作。</p>
-<p>$$ UCB(child) = + c P </p>
+<p>$$<br>
+UCB(child) = \overline{V_i} + c \cdot P \cdot \sqrt{\frac{\ln{N_{parent}}}{N_{child}}}</p>
 <p>$$</p>
 <ul>
-<li><span
-class="math inline">\(\overline{V_i}\)</span>：子节点的平均价值，比如围棋中的胜率</li>
-<li><span class="math inline">\(P\)</span>：策略网络的先验概率</li>
-<li><span
-class="math inline">\(N_{parent}\)</span>：父节点已经被访问的总次数</li>
-<li><span class="math inline">\(N_{child}\)</span>:
-子节点被访问的次数</li>
+<li>$\overline{V_i}$：子节点的平均价值，比如围棋中的胜率</li>
+<li>$P$：策略网络的先验概率</li>
+<li>$N_{parent}$：父节点已经被访问的总次数</li>
+<li>$N_{child}$: 子节点被访问的次数</li>
 </ul>
 <p>  前一项代表这个分支的已知表现，后一项代表未来存在的可能。</p>
 <h3 id="扩展">扩展</h3>
@@ -324,13 +322,9 @@ class="math inline">\(N_{parent}\)</span>：父节点已经被访问的总次数
     E --&gt; |NO|G(将当前节点下所有可能的新状态加入树中)
     G --&gt; H(当前节点变成第一个子节点)
     H --&gt; I(推演)</code></pre>
-<figure>
-<img src="/images/mcts-in-go/1785989269244.png" alt="1785989269244" />
-<figcaption aria-hidden="true">1785989269244</figcaption>
-</figure>
-<h2 id="以alphago-zero为例的应用">以AlphaGo Zero为例的应用</h2>
-<p>  在AlphaGo
-Zero中，使用价值网络直接评估叶节点来代替随机推演。这相较于传统的MCTS速度更快，使用神经网络对局面打分也能够体现对于局面的理解程度。但是其难点也就随之体现——如何找到一个有效的价值判断网络。</p>
+<p><img src="/images/mcts-in-go/1785989269244.png" alt="1785989269244"></p>
+<h2 id="以AlphaGo-Zero为例的应用">以AlphaGo Zero为例的应用</h2>
+<p>  在AlphaGo Zero中，使用价值网络直接评估叶节点来代替随机推演。这相较于传统的MCTS速度更快，使用神经网络对局面打分也能够体现对于局面的理解程度。但是其难点也就随之体现——如何找到一个有效的价值判断网络。</p>
 <p>  假设在有一个足够强大的价值网络的情况下，模拟一次走棋的完整过程。</p>
 <pre><code class="highlight plaintext">search_move(steps, board, color, curstep)
   └─ MCTS.search()

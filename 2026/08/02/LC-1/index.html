@@ -22,15 +22,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"egger435.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":false,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":500},"language":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="LeetCode上的第一题：两数之和。   给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target 的那 两个 整数，并返回它们的数组下标。可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。可以按任意顺序返回答案。">
+    <meta name="description" content="LeetCode上的第一题：两数之和。   给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回它们的数组下标。可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。可以按任意顺序返回答案。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="刷题届的abandon——两数之和">
 <meta property="og:url" content="https://egger435.github.io/2026/08/02/LC-1/index.html">
 <meta property="og:site_name" content="EGGER">
-<meta property="og:description" content="LeetCode上的第一题：两数之和。   给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target 的那 两个 整数，并返回它们的数组下标。可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。可以按任意顺序返回答案。">
+<meta property="og:description" content="LeetCode上的第一题：两数之和。   给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回它们的数组下标。可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。可以按任意顺序返回答案。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-08-02T15:34:45.000Z">
-<meta property="article:modified_time" content="2026-08-06T06:55:16.041Z">
+<meta property="article:modified_time" content="2026-08-06T07:17:18.984Z">
 <meta property="article:author" content="Egger">
 <meta property="article:tag" content="算法题">
 <meta name="twitter:card" content="summary">
@@ -260,7 +260,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-08-06 06:55:16" itemprop="dateModified" datetime="2026-08-06T06:55:16+00:00">2026-08-06</time>
+      <time title="Modified: 2026-08-06 07:17:18" itemprop="dateModified" datetime="2026-08-06T07:17:18+00:00">2026-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -282,9 +282,7 @@
     
     
     <div class="post-body" itemprop="articleBody"><p>  LeetCode上的第一题：两数之和。</p>
-<p>  给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出
-和为目标值 target 的那 两个
-整数，并返回它们的数组下标。可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。可以按任意顺序返回答案。</p>
+<p>  给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回它们的数组下标。可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。可以按任意顺序返回答案。</p>
 <span id="more"></span>
 <p>示例 1：</p>
 <pre><code class="highlight plaintext">输入：nums = [2,7,11,15], target = 9
@@ -317,8 +315,7 @@
     &#125;
     <span class="keyword">return</span> &#123;&#125;;
 &#125;</code></pre>
-<p>  这种情况下，由于两个for循环的嵌套，因此时间复杂度为<span
-class="math inline">\(O(n^2)\)</span>。</p>
+<p>  这种情况下，由于两个for循环的嵌套，因此时间复杂度为$O(n^2)$。</p>
 <p>  看看能不能继续优化。由于在暴力枚举的情况下，绝大多数时间都花费在这个过程中：对于一个数<code>nums[i]</code>，找剩下的数中是否存在一个<code>nums[j]</code>，使得两者和为target。也就是说第二层循环花费了太多的时间。</p>
 <p>  为了减少找这个<code>nums[j]</code>所花费的时间，我想到了一种办法——借助桶来实现空间换时间。</p>
 <p>  对于个<code>nums[i]</code>，我需要知道在剩下的数字中是否存在一个数为<code>target-nums[i]</code>。如果存在，则我要得到这个数的索引。因此，在开始前可以先遍历一遍整个数组，用一堆桶来标记每个数的索引位置，其中桶的索引就是这个数字，桶中存的数据就是这个数字在数组中的位置。</p>
@@ -381,8 +378,7 @@ bucket[<span class="number">1</span>][<span class="number">48</span>] = <span cl
 
     <span class="keyword">return</span> &#123;&#125;;
 &#125;</code></pre>
-<p>  这样一来两个for循环都是线性遍历数组，因此算法的时间复杂度为<span
-class="math inline">\(O(n)\)</span>。但是还有一个问题，空间开销太大了并且数组范围不够。若测试用例中有数大于了10000000，则会导致数组越界。因此这个算法只能提供一个空间换时间的思想。</p>
+<p>  这样一来两个for循环都是线性遍历数组，因此算法的时间复杂度为$O(n)$。但是还有一个问题，空间开销太大了并且数组范围不够。若测试用例中有数大于了10000000，则会导致数组越界。因此这个算法只能提供一个空间换时间的思想。</p>
 <p>  为避免空间开销太大，可以使用cpp中的map容器来代替一个巨大的二维数组。</p>
 <pre><code class="highlight cpp"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">twoSum</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>
 <span class="function"></span>&#123;
@@ -418,7 +414,6 @@ class="math inline">\(O(n)\)</span>。但是还有一个问题，空间开销太
     &#125;
     <span class="keyword">return</span> &#123;&#125;;
 &#125;</code></pre>
-
     </div>
 
     

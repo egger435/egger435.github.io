@@ -29,27 +29,27 @@
 <meta property="og:site_name" content="EGGER">
 <meta property="og:description" content="对Jay Alammar的The Illustrated Transformer做一个简单总结。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://egger435.github.io/2026/08/21/Transformer-summary/image/Transformer-summary/1787375463058.png">
-<meta property="og:image" content="https://egger435.github.io/2026/08/21/Transformer-summary/image/Transformer-summary/1787381308483.png">
-<meta property="og:image" content="https://egger435.github.io/2026/08/21/Transformer-summary/image/Transformer-summary/1787382735485.png">
-<meta property="og:image" content="https://egger435.github.io/2026/08/21/Transformer-summary/image/Transformer-summary/1787408516642.png">
-<meta property="og:image" content="https://egger435.github.io/2026/08/21/Transformer-summary/image/Transformer-summary/1787408864542.png">
-<meta property="og:image" content="https://egger435.github.io/2026/08/21/Transformer-summary/image/Transformer-summary/1787411014326.png">
-<meta property="og:image" content="https://egger435.github.io/2026/08/21/Transformer-summary/image/Transformer-summary/1787411208776.png">
-<meta property="og:image" content="https://egger435.github.io/2026/08/21/Transformer-summary/image/Transformer-summary/1787411621864.png">
-<meta property="og:image" content="https://egger435.github.io/2026/08/21/Transformer-summary/image/Transformer-summary/1787411720896.png">
-<meta property="og:image" content="https://egger435.github.io/2026/08/21/Transformer-summary/image/Transformer-summary/1787412645750.png">
-<meta property="og:image" content="https://egger435.github.io/2026/08/21/Transformer-summary/image/Transformer-summary/1787414428555.png">
-<meta property="og:image" content="https://egger435.github.io/2026/08/21/Transformer-summary/image/Transformer-summary/1787414453178.png">
-<meta property="og:image" content="https://egger435.github.io/2026/08/21/Transformer-summary/image/Transformer-summary/1787414966694.png">
-<meta property="og:image" content="https://egger435.github.io/2026/08/21/Transformer-summary/image/Transformer-summary/1787415954636.png">
+<meta property="og:image" content="https://egger435.github.io/images/Transformer-summary/1787375463058.png">
+<meta property="og:image" content="https://egger435.github.io/images/Transformer-summary/1787381308483.png">
+<meta property="og:image" content="https://egger435.github.io/images/Transformer-summary/1787382735485.png">
+<meta property="og:image" content="https://egger435.github.io/images/Transformer-summary/1787408516642.png">
+<meta property="og:image" content="https://egger435.github.io/images/Transformer-summary/1787408864542.png">
+<meta property="og:image" content="https://egger435.github.io/images/Transformer-summary/1787411014326.png">
+<meta property="og:image" content="https://egger435.github.io/images/Transformer-summary/1787411208776.png">
+<meta property="og:image" content="https://egger435.github.io/images/Transformer-summary/1787411621864.png">
+<meta property="og:image" content="https://egger435.github.io/images/Transformer-summary/1787411720896.png">
+<meta property="og:image" content="https://egger435.github.io/images/Transformer-summary/1787412645750.png">
+<meta property="og:image" content="https://egger435.github.io/images/Transformer-summary/1787414428555.png">
+<meta property="og:image" content="https://egger435.github.io/images/Transformer-summary/1787414453178.png">
+<meta property="og:image" content="https://egger435.github.io/images/Transformer-summary/1787414966694.png">
+<meta property="og:image" content="https://egger435.github.io/images/Transformer-summary/1787415954636.png">
 <meta property="article:published_time" content="2026-08-21T23:22:30.000Z">
-<meta property="article:modified_time" content="2026-08-22T16:52:13.625Z">
+<meta property="article:modified_time" content="2026-08-22T16:55:29.617Z">
 <meta property="article:author" content="Egger">
 <meta property="article:tag" content="LLM">
 <meta property="article:tag" content="Transformer">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://egger435.github.io/2026/08/21/Transformer-summary/image/Transformer-summary/1787375463058.png">
+<meta name="twitter:image" content="https://egger435.github.io/images/Transformer-summary/1787375463058.png">
 
 
 <link rel="canonical" href="https://egger435.github.io/2026/08/21/Transformer-summary/">
@@ -277,7 +277,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-08-22 16:52:13" itemprop="dateModified" datetime="2026-08-22T16:52:13+00:00">2026-08-22</time>
+      <time title="Modified: 2026-08-22 16:55:29" itemprop="dateModified" datetime="2026-08-22T16:55:29+00:00">2026-08-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -306,13 +306,13 @@ Illustrated Transformer</a>做一个简单总结。</p>
 <h2 id="整体结构">整体结构</h2>
 <p>  从宏观上来看，Transformer是由一堆编码器与解码器组成。其各自的数量没有具体要求，不过编码器和解码器的数量是相同的。</p>
 <figure>
-<img src="image/Transformer-summary/1787375463058.png"
+<img src="/images/Transformer-summary/1787375463058.png"
 alt="Transformer基础结构" />
 <figcaption aria-hidden="true">Transformer基础结构</figcaption>
 </figure>
 <p>  其中编码器由自注意力层和前馈神经网络组成。解码器也同样有这两层，但是在这两层之间还有一个注意力层——帮助解码器关注输入序列的相关部分。</p>
 <figure>
-<img src="image/Transformer-summary/1787381308483.png"
+<img src="/images/Transformer-summary/1787381308483.png"
 alt="编码器和解码器" />
 <figcaption aria-hidden="true">编码器和解码器</figcaption>
 </figure>
@@ -336,7 +336,7 @@ class="math inline">\(V\)</span>向量（Query、Key、Value）。具体计算�
 <li><span class="math inline">\(V_i = X_i \times W^V\)</span></li>
 <li>其中这三个<span
 class="math inline">\(W\)</span>矩阵都是在模型训练过程中得到的模型参数
-<img src="image/Transformer-summary/1787382735485.png"
+<img src="/images/Transformer-summary/1787382735485.png"
 alt="QKV计算" /></li>
 </ul></li>
 <li><p><strong>第二步</strong>：对于每一个<span
@@ -355,7 +355,7 @@ class="math inline">\(score\)</span>就是<span class="math inline">\(Q_1
 class="math inline">\(X_2\)</span>的<span
 class="math inline">\(score\)</span>就是<span class="math inline">\(Q_1
 \cdot K_2\)</span> …… <img
-src="image/Transformer-summary/1787383691978.png"
+src="/images/Transformer-summary/1787383691978.png"
 alt="score的运算" /></li>
 </ul></li>
 <li><p><strong>第三步</strong>：将计算出来的<span
@@ -364,12 +364,12 @@ class="math inline">\(\sqrt{d_k}\)</span>，并通过一个<span
 class="math inline">\(Softmax\)</span>。其中<span
 class="math inline">\(d_k\)</span>是<span
 class="math inline">\(K\)</span>向量的维度。其目的是为了能够让模型有更加稳定的梯度。
-<img src="image/Transformer-summary/1787408516642.png" /></p></li>
+<img src="/images/Transformer-summary/1787408516642.png" /></p></li>
 <li><p><strong>第四步</strong>：将每一个<span
 class="math inline">\(V\)</span>向量乘以经过<span
 class="math inline">\(Softmax\)</span>的<span
 class="math inline">\(score\)</span>，以提高相关词的关注度，降低不相干的。
-<img src="image/Transformer-summary/1787408864542.png" /></p></li>
+<img src="/images/Transformer-summary/1787408864542.png" /></p></li>
 <li><p><strong>第五步</strong>：将所有加权后的<span
 class="math inline">\(V\)</span>向量求和，最后得到的结果就是自注意力层在输入序列当前位置上的结果。</p></li>
 </ol>
@@ -389,7 +389,7 @@ K^T}{\sqrt{d_k}})V\]</span></li>
 <h2 id="多头注意力-multi-head">多头注意力 multi-head</h2>
 <p>  通过多头注意力，能够让模型关注输入序列的不同特征。简单来说就是让不同的头关注不同的信息。它能够提升模型在注意力层的表现。</p>
 <figure>
-<img src="image/Transformer-summary/1787411014326.png"
+<img src="/images/Transformer-summary/1787411014326.png"
 alt="1787411014326" />
 <figcaption aria-hidden="true">1787411014326</figcaption>
 </figure>
@@ -397,7 +397,7 @@ alt="1787411014326" />
 class="math inline">\(Z_0\)</span>到<span
 class="math inline">\(Z_7\)</span>。</p>
 <figure>
-<img src="image/Transformer-summary/1787411208776.png"
+<img src="/images/Transformer-summary/1787411208776.png"
 alt="1787411208776" />
 <figcaption aria-hidden="true">1787411208776</figcaption>
 </figure>
@@ -407,32 +407,32 @@ class="math inline">\(Z\)</span>包含了所有注意力头的信息，然后将
 <p><span class="math display">\[Z = concat(Z_0...Z_7) \times
 W^O\]</span></p>
 <figure>
-<img src="image/Transformer-summary/1787411621864.png"
+<img src="/images/Transformer-summary/1787411621864.png"
 alt="1787411621864" />
 <figcaption aria-hidden="true">1787411621864</figcaption>
 </figure>
 <p>  以下是注意力机制的完整图：</p>
 <figure>
-<img src="image/Transformer-summary/1787411720896.png"
+<img src="/images/Transformer-summary/1787411720896.png"
 alt="1787411720896" />
 <figcaption aria-hidden="true">1787411720896</figcaption>
 </figure>
 <h2 id="位置编码">位置编码</h2>
 <p>  通过位置编码将输入序列的空间信息进行表征。最终送给模型进行注意力处理的输入是将词嵌入和位置编码信息的和。</p>
 <figure>
-<img src="image/Transformer-summary/1787412645750.png"
+<img src="/images/Transformer-summary/1787412645750.png"
 alt="1787412645750" />
 <figcaption aria-hidden="true">1787412645750</figcaption>
 </figure>
 <h2 id="残差">残差</h2>
 <p>  在编码器和解码器的子层中还通过残差连接以降低梯度的退化。</p>
 <figure>
-<img src="image/Transformer-summary/1787414428555.png"
+<img src="/images/Transformer-summary/1787414428555.png"
 alt="1787414428555" />
 <figcaption aria-hidden="true">1787414428555</figcaption>
 </figure>
 <figure>
-<img src="image/Transformer-summary/1787414453178.png"
+<img src="/images/Transformer-summary/1787414453178.png"
 alt="1787414453178" />
 <figcaption aria-hidden="true">1787414453178</figcaption>
 </figure>
@@ -442,7 +442,7 @@ class="math inline">\(K_{encdec}\)</span>和<span
 class="math inline">\(V_{encdec}\)</span>，这些注意力向量会在解码器的每个“编码-解码
 注意力层”中使用。</p>
 <figure>
-<img src="image/Transformer-summary/1787414966694.png"
+<img src="/images/Transformer-summary/1787414966694.png"
 alt="1787414966694" />
 <figcaption aria-hidden="true">1787414966694</figcaption>
 </figure>
@@ -454,7 +454,7 @@ class="math inline">\(V\)</span>矩阵来自编码器的输出。</p>
 <h2 id="最后的回归">最后的回归</h2>
 <p>  最后，将解码器的输出通过一个全连接层以及一个softmax得到最终单词（token）的概率分布，选取其中概率最高的一个。</p>
 <figure>
-<img src="image/Transformer-summary/1787415954636.png"
+<img src="/images/Transformer-summary/1787415954636.png"
 alt="1787415954636" />
 <figcaption aria-hidden="true">1787415954636</figcaption>
 </figure>

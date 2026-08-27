@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"egger435.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":false,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":500},"language":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="为了正式实践一下Transformer，我自己训练了一个GPT。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自己做了一个小GPT——eggGPT">
+<meta property="og:url" content="https://egger435.github.io/2026/08/27/my-small-gpt-egggpt/index.html">
+<meta property="og:site_name" content="EGGER">
+<meta property="og:description" content="为了正式实践一下Transformer，我自己训练了一个GPT。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-08-27T12:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-27T08:48:25.618Z">
+<meta property="article:author" content="Egger">
+<meta property="article:tag" content="LLM">
+<meta property="article:tag" content="技术博客">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://egger435.github.io/2026/08/27/my-small-gpt-egggpt/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://egger435.github.io/2026/08/27/my-small-gpt-egggpt/","path":"2026/08/27/my-small-gpt-egggpt/","title":"自己做了一个小GPT——eggGPT"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>自己做了一个小GPT——eggGPT | EGGER</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">EGGER</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">10</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">9</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">32</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%81%9A%E8%BF%99%E4%BB%B6%E4%BA%8B"><span class="nav-number">1.</span> <span class="nav-text">为什么做这件事</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E8%BF%9B%E5%8C%96%E5%8F%B2%E4%BB%8Ev1-7.3m%E5%88%B0v5-110m"><span class="nav-number">2.</span> <span class="nav-text">预训练进化史：从v1-7.3M到v5-110M</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B-v1-7.3m"><span class="nav-number">2.1.</span> <span class="nav-text">预训练模型 v1-7.3M</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B-v2-16.9m"><span class="nav-number">2.2.</span> <span class="nav-text">预训练模型 v2-16.9M</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B-v3-33m"><span class="nav-number">2.3.</span> <span class="nav-text">预训练模型 v3-33M</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B-v4-42m"><span class="nav-number">2.4.</span> <span class="nav-text">预训练模型 v4-42M</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B-v4.1-42m"><span class="nav-number">2.5.</span> <span class="nav-text">预训练模型 v4.1-42M</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%97%E6%AD%8C%E6%A8%A1%E5%9E%8B-poem-4.1m"><span class="nav-number">2.6.</span> <span class="nav-text">诗歌模型 poem-4.1M</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B-v5-110m"><span class="nav-number">2.7.</span> <span class="nav-text">预训练模型 v5-110M</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A9%E5%AE%83%E5%BC%80%E5%8F%A3%E8%AF%B4%E8%AF%9D%E6%8C%87%E4%BB%A4%E5%BE%AE%E8%B0%83"><span class="nav-number">3.</span> <span class="nav-text">让它开口说话：指令微调</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%95%E4%B8%80%E8%AF%95"><span class="nav-number">4.</span> <span class="nav-text">试一试</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Egger</p>
+  <div class="site-description" itemprop="description">Hello im egger</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/egger435" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;egger435" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://egger435.github.io/2026/08/27/my-small-gpt-egggpt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Egger">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="EGGER">
+      <meta itemprop="description" content="Hello im egger">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="自己做了一个小GPT——eggGPT | EGGER">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          自己做了一个小GPT——eggGPT
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-08-27 12:00:00 / Modified: 08:48:25" itemprop="dateCreated datePublished" datetime="2026-08-27T12:00:00+00:00">2026-08-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LLM/" itemprop="url" rel="index"><span itemprop="name">LLM</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>  为了正式实践一下Transformer，我自己训练了一个GPT。</p>
+<span id="more"></span>
+<h2 id="为什么做这件事">为什么做这件事</h2>
+<p>  一直听闻Transformer架构的顶顶大名，但是始终没有实践过，于是打算自己做一个GPT试试看。</p>
+<p>  由于我的显卡只是一个8G显存的4060
+Laptop，而且剩下的硬盘空间也很小了。所以我只想做一个能回我话的超级超级超级小模型，我并没有抱着模型能多牛逼的想法。不过我得自己推一遍Transformer中的注意力计算公式，代码中模型架构的部分也得自己手搓一遍，不用封装好的Transformer。然后在自己电脑上把预训练和微调都跑完。</p>
+<h2
+id="预训练进化史从v1-7.3m到v5-110m">预训练进化史：从v1-7.3M到v5-110M</h2>
+<p>  现在勉强可以回复的eggGPT-v5-chat-110M经过了好几轮迭代。</p>
+<h3 id="预训练模型-v1-7.3m">预训练模型 v1-7.3M</h3>
+<p>  这是我训练的第一个预训练模型，模型配置如下</p>
+<table>
+<tbody>
+<tr class="odd">
+<td>词表大小</td>
+<td>8000</td>
+</tr>
+<tr class="even">
+<td>最大序列长度</td>
+<td>256</td>
+</tr>
+<tr class="odd">
+<td>TransformerBlock 数量</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>注意力头数量</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>embedding 维度</td>
+<td>256</td>
+</tr>
+<tr class="even">
+<td>参数量</td>
+<td>7,321,088</td>
+</tr>
+</tbody>
+</table>
+<p>  它的训练语料是我自己准备的，有我的博客文章，我在学校写的一些报告，我的游戏构思以及基本zlib上下载的小说和世界名著。训练集
+27,837,231 tokens，验证集 1,461,548
+tokens。说实话它的生成效果非常差，由于我给了好多小说资料，因此它生成的文本内容绝大多数都是对话，并且主题漂移严重，很容易退化成复读循环。</p>
+<h3 id="预训练模型-v2-16.9m">预训练模型 v2-16.9M</h3>
+<p>  于是在训练第二版预训练模型时候，我决定扩大模型参数，让模型强大一些。</p>
+<table>
+<tbody>
+<tr class="odd">
+<td>词表大小</td>
+<td>8000</td>
+</tr>
+<tr class="even">
+<td>最大序列长度</td>
+<td>256</td>
+</tr>
+<tr class="odd">
+<td>TransformerBlock 数量</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>注意力头数量</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>embedding 维度</td>
+<td>384</td>
+</tr>
+<tr class="even">
+<td>参数量</td>
+<td>16,889,856</td>
+</tr>
+</tbody>
+</table>
+<p>  此外，我还优化了一下训练语料，减少了小说的占比，加入了一些纪实作品。训练集
+39,194,453 tokens，验证集 2,059,284 tokens。从最后测试结果上来看，15
+样本中 15
+个退化为复读循环。典型复读内容：「爱您」「先生」「巴黎」「她」。词汇更多样（能冒出《1Q84》的”天吾”、古典小说腔），但连贯性与
+v1 相比没有实质提升。</p>
+<h3 id="预训练模型-v3-33m">预训练模型 v3-33M</h3>
+<p>  自己准备语料还是太累了，而且我准备的语料质量似乎并不是那么好。因此对于第三个版本的预训练模型我打算使用公开的语料进行训练并且进一步扩大模型参数。</p>
+<table>
+<tbody>
+<tr class="odd">
+<td>词表大小</td>
+<td>8000</td>
+</tr>
+<tr class="even">
+<td>最大序列长度</td>
+<td>256</td>
+</tr>
+<tr class="odd">
+<td>TransformerBlock 数量</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>注意力头数量</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>embedding 维度</td>
+<td>512</td>
+</tr>
+<tr class="even">
+<td>参数量</td>
+<td>33,543,168</td>
+</tr>
+</tbody>
+</table>
+<p>  这次我不再自己准备训练语料，而是使用中文维基语料。抽样 10.4 万篇 →
+清洗后 train 124,599,922 tokens + val 6,538,580
+tokens。虽然训练语料大大增加，但是我发现预训练出来的结果依旧不尽人意。由于全是维基语料，虽然没有了对话模式，但是百科腔非常严重。并且由于语料数据没有清洗干净，导致会生成一些网页的标签特征。</p>
+<h3 id="预训练模型-v4-42m">预训练模型 v4-42M</h3>
+<p>  对于第四版预训练模型，我又优化了一下模型架构，8000的词汇量还是太少了，于是扩大了整整一倍。另外增加了最长序列长度，试图强化一下上下文记忆。</p>
+<table>
+<tbody>
+<tr class="odd">
+<td>词表大小</td>
+<td>16000</td>
+</tr>
+<tr class="even">
+<td>最大序列长度</td>
+<td>384</td>
+</tr>
+<tr class="odd">
+<td>TransformerBlock 数量</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>注意力头数量</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>embedding 维度</td>
+<td>512</td>
+</tr>
+<tr class="even">
+<td>参数量</td>
+<td>41,800,704</td>
+</tr>
+</tbody>
+</table>
+<p>  这一次我将维基中文语料又进行了一次数据清理，去掉了网页结构样板，留下更加干净一些的文本。然后我基于干净的语料重新训练了tokenizer。最后得到train
+74,271,637 tokens + val 3,908,302
+tokens。从训练结果上来看，要更好一些，至少没有了v3版本的网页注脚等标签数据。但是由于是维基百科，所以模型训练出来的仍然是说明文，缺少话题和故事的延续性。看来纯维基百科数据并不合适。</p>
+<h3 id="预训练模型-v4.1-42m">预训练模型 v4.1-42M</h3>
+<p>  因此，对于下一个版本，我需要优化一下训练语料。保持模型架构不动，打算在维基的基础上，加入一些话题和故事的叙述性文本。</p>
+<p>  将60%小说和40%维基混合，得到train 61.66M tokens / val 3.49M
+tokens的训练数据。从训练结果上来看，v4.1能够进入叙事，有角色、对话以及场景推进，但是仍然存在翻译腔语法、逻辑混乱的问题。着大抵是数据集上的瓶颈了。</p>
+<h3 id="诗歌模型-poem-4.1m">诗歌模型 poem-4.1M</h3>
+<p>  在进行预训练之余，我突发奇想。反正我现在训练出来的小的预训练模型都是讲得前言不搭后语的，而人类的诗歌在我这种外行看来正好也是前言不搭后语的，要是我用一些诗歌数据集训练一个诗歌模型效果如何。由于我的zlib一天只能下10本书，所以我准备的诗歌数据集（海子、徐志摩、艾青、郭沫若、但丁、莎士比亚等等的作品）并不是很多，因此诗歌模型并不会设计得太大。</p>
+<table>
+<tbody>
+<tr class="odd">
+<td>词表大小</td>
+<td>12000</td>
+</tr>
+<tr class="even">
+<td>最大序列长度</td>
+<td>256</td>
+</tr>
+<tr class="odd">
+<td>TransformerBlock 数量</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>注意力头数量</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>embedding 维度</td>
+<td>192</td>
+</tr>
+<tr class="even">
+<td>参数量</td>
+<td>4,132,992</td>
+</tr>
+</tbody>
+</table>
+<p>  最终训练出来的生成表现真是太差了，产出完全就是虚词汤。模型只是学会了中文的样子，数据集太少不够学任何文学意义上的搭配结构。下面是它写的一首诗，估计高人都无法解读。</p>
+<pre><code class="highlight plaintext">面朝大海，春暖花开下
+一
+在水；
+而用山。
+我就一个又对从那在白
+有不人
+我，这小。
+把花，如被血上
+…</code></pre>
+<h3 id="预训练模型-v5-110m">预训练模型 v5-110M</h3>
+<p>  最终，我干脆整个大的。换个大一些的模型，换个好些的训练语料。</p>
+<table>
+<tbody>
+<tr class="odd">
+<td>词表大小</td>
+<td>32000</td>
+</tr>
+<tr class="even">
+<td>最大序列长度</td>
+<td>512</td>
+</tr>
+<tr class="odd">
+<td>TransformerBlock 数量</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td>注意力头数量</td>
+<td>12</td>
+</tr>
+<tr class="odd">
+<td>embedding 维度</td>
+<td>768</td>
+</tr>
+<tr class="even">
+<td>参数量</td>
+<td>110,025,216</td>
+</tr>
+</tbody>
+</table>
+<p>  模型参数量来到了一个亿！训练数据使用开源的Skypile-150B（但是只取其中的一部分），然后加上一些古典名著以及少量的维基文库书籍。得到train
+<strong>323,082,851</strong> tokens / val <strong>16,977,951</strong>
+tokens的训练数据。在经过14.77小时的训练后，终于得到了一个还算说的过去的预训练基座模型。虽然仍有不足之处，但是续写水平以及逻辑水平已经达到了小学生的能力。以下是它的一个续写片段。</p>
+<pre><code class="highlight plaintext">开头: 
+有一天，小明在上学的路上...
+
+预训练模型 v5-110M 续写：
+有一天，小明在上学的路上遇见了“大爷”。
+这天早晨，小明在街上遇到“大爷”孙悟空。他一抬头就看见唐僧正骑着马从背后赶去，但是他还是不以为然地站了起来，小明就对他说：“你是大爷。”小明很感激孙悟空，于是便把马拿在身上放了回去。</code></pre>
+<h2 id="让它开口说话指令微调">让它开口说话：指令微调</h2>
+<p>  预训练出来的 v5
+只会续写，给它一句话，它接着写，但不会回答问题。要让它变成能对话的模型，需要<strong>指令微调（SFT）</strong>：</p>
+<ul>
+<li>数据用 <strong>Belle 的中文指令数据集</strong>（0.5M
+条”指令-回答”对），加上我自己写的几十条身份样本</li>
+<li>训练用<strong>掩码交叉熵</strong>——loss
+只算助手回答那一部分，避免模型自己当起来了用户</li>
+</ul>
+<p>  经过4小时的微调训练，得到了
+v5-chat。现在才有了勉强聊天的能力。实际上，以聊天机器人的能力来看它的话，它完全是不合格的，相当呆。连最简单的1+1都不会。不过受限于模型参数、训练语料、硬件成本、时间成本，能达到这种程度我已经很满意了。毕竟着只是一个我用来学习的练手项目。</p>
+<h2 id="试一试">试一试</h2>
+<p>  下面是 eggGPT 的体验区。如果后端在线的话，可以试着跟它聊聊。</p>
+
+<div id="egggpt-widget">
+  <style>
+    #egggpt-widget{--c-bg:#0d1117;--c-fg:#c9d1d9;--c-cyan:#66d9ef;--c-green:#7ee787;--c-yellow:#e5c07b;--c-gray:#8b949e;--c-dim:#6e7681;--c-bold:#e6edf3;--c-border:#30363d;--c-panel:#161b22;font-family:Consolas,"Courier New","Microsoft YaHei",monospace;max-width:640px;margin:24px auto;background:var(--c-bg);color:var(--c-fg);border:1px solid #21262d;border-radius:10px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.35);font-size:13px;line-height:1.55;}
+    #egggpt-widget *{box-sizing:border-box;}
+    .eg-winbar{display:flex;align-items:center;gap:8px;padding:8px 14px;background:var(--c-panel);border-bottom:1px solid #21262d;}
+    .eg-dots{display:flex;gap:6px;}
+    .eg-dots i{width:11px;height:11px;border-radius:50%;display:block;}
+    .eg-dots .r{background:#ff5f56;}.eg-dots .y{background:#ffbd2e;}.eg-dots .g{background:#27c93f;}
+    .eg-wintitle{margin-left:6px;font-size:12px;color:var(--c-dim);}
+    .eg-badge{margin-left:auto;font-size:11px;color:var(--c-dim);border:1px solid #30363d;border-radius:999px;padding:1px 9px;}
+    .eg-msgs{height:400px;overflow-y:auto;padding:12px 16px 8px;}
+    .eg-msgs::-webkit-scrollbar{width:8px;}
+    .eg-msgs::-webkit-scrollbar-thumb{background:#30363d;border-radius:4px;}
+    .eg-line{white-space:pre-wrap;word-break:break-word;}
+    .eg-line.div{white-space:nowrap;overflow:hidden;color:var(--c-dim);}
+    .eg-line.ban pre{margin:0;font-family:inherit;color:var(--c-cyan);line-height:1.25;padding:2px 0;}
+    .eg-line.ban pre span{color:inherit;}
+    .c-c{color:var(--c-cyan);}.c-g{color:var(--c-green);}.c-y{color:var(--c-yellow);}
+    .c-gray{color:var(--c-gray);}.c-d{color:var(--c-dim);}
+    .c-b{font-weight:700;color:var(--c-bold);}.c-bc{font-weight:700;color:var(--c-cyan);}.c-bg{font-weight:700;color:var(--c-green);}
+    .eg-sp{color:var(--c-cyan);display:inline-block;min-width:1em;text-align:center;}
+    .eg-inputbar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-top:1px solid #21262d;background:var(--c-panel);}
+    .eg-prompt{color:var(--c-cyan);font-weight:700;white-space:nowrap;}
+    .eg-inputbar input{flex:1;background:transparent;border:1px solid #30363d;border-radius:5px;color:var(--c-fg);font-family:inherit;font-size:13px;padding:7px 10px;outline:none;}
+    .eg-inputbar input:focus{border-color:var(--c-cyan);}
+    .eg-inputbar input:disabled{opacity:.55;}
+    .eg-inputbar button{padding:7px 18px;border:none;border-radius:5px;background:#2ea043;color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;}
+    .eg-inputbar button:hover{background:#2c974b;}
+    .eg-inputbar button:disabled{opacity:.55;cursor:not-allowed;}
+    .eg-foot{padding:6px 14px 9px;font-size:11px;color:var(--c-dim);text-align:center;background:var(--c-bg);border-top:1px solid #21262d;}
+    @media (max-width:480px){.eg-msgs{height:340px;}}
+  </style>
+
+  <div class="eg-winbar">
+    <span class="eg-dots"><i class="r"></i><i class="y"></i><i class="g"></i></span>
+    <span class="eg-wintitle">eggGPT — 终端</span>
+    <span class="eg-badge">110M · 单轮对话</span>
+  </div>
+  <div class="eg-msgs" id="egMsgs"></div>
+  <div class="eg-inputbar">
+    <span class="eg-prompt">&gt;</span>
+    <input id="egInp" type="text" maxlength="500" placeholder="输入你的问题，回车发送…" autocomplete="off" spellcheck="false">
+    <button id="egSend" type="button">发送</button>
+  </div>
+  <div class="eg-foot">eggGPT 控制台 · 模型运行在 Egger 的电脑上</div>
+
+  <script>
+    (function () {
+      var API = "https://egggpt.47.110.89.148.nip.io/api/chat";
+      var HEALTH = "https://egggpt.47.110.89.148.nip.io/health";
+      var BASE = "https://egggpt.47.110.89.148.nip.io";
+      var INDENT = "           "; // 11 空格，与 REPLY_PREFIX_W 对齐
+      var GREETING = "你好世界！我是eggGPT。";
+      var SPIN = "⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏"; // 加载动画帧（与 client.py 一致）
+      var box = document.getElementById("egMsgs");
+      var inp = document.getElementById("egInp");
+      var btn = document.getElementById("egSend");
+      var busy = false;
+
+      function esc(s) {
+        return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      }
+      function charWidth(c) {
+        var code = c.charCodeAt(0);
+        if (code >= 0xD800 && code <= 0xDFFF) return 2; // 代理对（emoji 等）
+        if (code < 0x1100) return 1;
+        if (code <= 0x115F || code === 0x2329 || code === 0x232A) return 2;
+        if (code >= 0x2E80 && code <= 0xA4CF && code !== 0x303F) return 2;
+        if (code >= 0xAC00 && code <= 0xD7A3) return 2;
+        if (code >= 0xF900 && code <= 0xFAFF) return 2;
+        if (code >= 0xFE30 && code <= 0xFE4F) return 2;
+        if (code >= 0xFF00 && code <= 0xFF60) return 2;
+        if (code >= 0xFFE0 && code <= 0xFFE6) return 2;
+        return 1;
+      }
+      function wrapLines(text, avail) {
+        var out = [];
+        var parts = text.split("\n");
+        for (var p = 0; p < parts.length; p++) {
+          var line = "", w = 0;
+          var chars = parts[p];
+          for (var i = 0; i < chars.length; i++) {
+            var ch = chars.charAt(i);
+            var cw = charWidth(ch);
+            if (w + cw > avail && line) { out.push(line); line = ""; w = 0; }
+            line += ch; w += cw;
+          }
+          out.push(line);
+        }
+        return out;
+      }
+      var _ch = 0;
+      function cols() {
+        if (!_ch) {
+          var s = document.createElement("span");
+          s.style.cssText = "position:absolute;visibility:hidden;left:-9999px;";
+          s.textContent = "0";
+          document.body.appendChild(s);
+          _ch = s.offsetWidth || 8;
+          document.body.removeChild(s);
+        }
+        return Math.max(20, Math.floor((box.clientWidth - 32) / _ch));
+      }
+      window.addEventListener("resize", function () { cols(); });
+
+      function addLine(html, cls) {
+        var d = document.createElement("div");
+        d.className = "eg-line" + (cls ? " " + cls : "");
+        d.innerHTML = html;
+        box.appendChild(d);
+        box.scrollTop = box.scrollHeight;
+        return d;
+      }
+      function addDivider() {
+        var n = cols(), s = "  ";
+        for (var i = 0; i < n; i++) s += "─";
+        addLine(s, "div");
+      }
+      function addBot(text) {
+        var avail = Math.max(12, cols() - 13);
+        var lines = wrapLines(text, avail);
+        var prefix = '<span class="c-bg">  eggGPT</span> <span class="c-d">▏</span> ';
+        var out = prefix + esc(lines[0]);
+        for (var i = 1; i < lines.length; i++) out += "\n" + INDENT + esc(lines[i]);
+        addLine(out, "bot");
+      }
+      function addUser(text) {
+        addLine('<span class="c-bc">  &gt; </span>' + esc(text), "user");
+      }
+      function addFoot(usage, dt) {
+        var n = (usage && usage.completion_tokens) ? usage.completion_tokens : 0;
+        addLine("  └─ " + n + " tokens · " + dt.toFixed(2) + "s", "foot");
+      }
+      function addSpinner(label) {
+        var l = document.createElement("div");
+        l.className = "eg-line";
+        var sp = document.createElement("span");
+        sp.className = "eg-sp";
+        sp.textContent = SPIN.charAt(0);
+        l.appendChild(sp);
+        l.appendChild(document.createTextNode(" " + label + " "));
+        var sec = document.createElement("span");
+        sec.className = "c-d";
+        sec.id = "egSecs";
+        sec.textContent = "0";
+        l.appendChild(sec);
+        l.appendChild(document.createTextNode("s"));
+        box.appendChild(l);
+        box.scrollTop = box.scrollHeight;
+        var t0 = Date.now();
+        var idx = 0;
+        var iv = setInterval(function () {
+          idx = (idx + 1) % SPIN.length;
+          sp.textContent = SPIN.charAt(idx);   // 切换 braille 帧
+          sec.textContent = Math.floor((Date.now() - t0) / 1000);
+        }, 30);
+        l._egTimer = iv; // 定时器绑到自身元素，removeSpinner 只清自己的，互不干扰
+        return l;
+      }
+      function removeSpinner(l) {
+        if (l && l._egTimer) { clearInterval(l._egTimer); }
+        if (l && l.parentNode) l.parentNode.removeChild(l);
+      }
+      function fmtUptime(s) {
+        s = Math.floor(s || 0);
+        if (s >= 3600) return Math.floor(s / 3600) + "h " + Math.floor((s % 3600) / 60) + "m";
+        if (s >= 60) return Math.floor(s / 60) + "m " + (s % 60) + "s";
+        return s + "s";
+      }
+      function bannerHTML() {
+        var R = [
+          "        █████",
+          "      █████████",
+          "     ███ ███ ███",
+          "    █████████████",
+          "    █████████████",
+          "     ███████████",
+          "       ███████"
+        ];
+        var artW = 18;
+        var lines = [];
+        for (var i = 0; i < R.length; i++) {
+          var a = R[i];
+          var sp = artW - a.length + 3;
+          var s = a;
+          for (var k = 0; k < sp; k++) s += " ";
+          if (i === 3) s += '<span class="c-bc">eggGPT</span> <span class="c-d">· v5-chat-110M</span>';
+          lines.push(s);
+        }
+        return '<pre>' + lines.join("\n") + '</pre>';
+      }
+
+      addLine(bannerHTML(), "ban");
+      var st = addSpinner("检查后端状态…");
+      fetch(HEALTH, { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (h) {
+        removeSpinner(st);
+        addLine('<span class="c-g">  ✓ 后端在线</span> <span class="c-d">· ' + BASE + '</span>');
+        addLine('<span class="c-d">     模型 ' + esc(h.model || "?") + ' · 设备 ' + esc(h.device || "?") + ' · 已运行 ' + fmtUptime(h.uptime_s) + ' · 并发 ' + (h.in_flight || 0) + '</span>');
+      }).catch(function () {
+        removeSpinner(st);
+        addLine('<span class="c-y">  ✗ 无法连接后端 ' + BASE + '</span>');
+        addLine('<span class="c-d">     后端离线。过会儿再来〜</span>');
+      });
+      addDivider();
+      addBot(GREETING);
+      addDivider();
+
+      function send() {
+        if (busy) return;
+        var text = inp.value.trim();
+        if (!text) return;
+        inp.value = "";
+        addUser(text);
+        busy = true;
+        btn.disabled = true;
+        inp.disabled = true;
+        var sp = addSpinner("eggGPT 思考中…");
+        fetch(API, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: text })
+        }).then(function (r) {
+          if (r.status === 429) { var e1 = new Error("busy"); e1.kind = 429; throw e1; }
+          if (!r.ok) { var e2 = new Error("http " + r.status); e2.kind = r.status; throw e2; }
+          return r.json();
+        }).then(function (j) {
+          removeSpinner(sp);
+          if (j && j.reply) {
+            addBot(j.reply);
+            addFoot(j.usage, (j.latency_ms || 0) / 1000);
+          } else {
+            addLine('<span class="c-y">  ✗ 模型返回了空回复，换个问题试试〜</span>');
+          }
+          addDivider();
+        }).catch(function (e) {
+          removeSpinner(sp);
+          if (e && e.kind === 429) {
+            addLine('<span class="c-y">  ✗ HTTP 429：server busy, retry later</span>');
+          } else if (e && e.kind) {
+            addLine('<span class="c-y">  ✗ HTTP ' + e.kind + '：服务器错误</span>');
+          } else {
+            addLine('<span class="c-y">  ✗ 连接失败：后端/frp 不在线</span>');
+          }
+          addDivider();
+        }).finally(function () {
+          busy = false;
+          btn.disabled = false;
+          inp.disabled = false;
+          inp.focus();
+        });
+      }
+
+      btn.addEventListener("click", send);
+      inp.addEventListener("keydown", function (e) { if (e.key === "Enter") send(); });
+      inp.focus();
+    })();
+  </script>
+</div>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/LLM/" rel="tag"># LLM</a>
+              <a href="/tags/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/" rel="tag"># 技术博客</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/08/21/Transformer-summary/" rel="prev" title="Transformer的简单总结">
+                  <i class="fa fa-angle-left"></i> Transformer的简单总结
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Egger</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

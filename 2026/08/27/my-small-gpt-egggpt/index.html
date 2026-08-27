@@ -30,7 +30,7 @@
 <meta property="og:description" content="为了正式实践一下Transformer，我自己训练了一个GPT。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-08-27T12:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-27T08:48:25.618Z">
+<meta property="article:modified_time" content="2026-08-27T10:16:24.197Z">
 <meta property="article:author" content="Egger">
 <meta property="article:tag" content="LLM">
 <meta property="article:tag" content="技术博客">
@@ -256,7 +256,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2026-08-27 12:00:00 / Modified: 08:48:25" itemprop="dateCreated datePublished" datetime="2026-08-27T12:00:00+00:00">2026-08-27</time>
+      <time title="Created: 2026-08-27 12:00:00 / Modified: 10:16:24" itemprop="dateCreated datePublished" datetime="2026-08-27T12:00:00+00:00">2026-08-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -532,8 +532,6 @@ v5-chat。现在才有了勉强聊天的能力。实际上，以聊天机器人�
     .eg-msgs::-webkit-scrollbar-thumb{background:#30363d;border-radius:4px;}
     .eg-line{white-space:pre-wrap;word-break:break-word;}
     .eg-line.div{white-space:nowrap;overflow:hidden;color:var(--c-dim);}
-    .eg-line.ban pre{margin:0;font-family:inherit;color:var(--c-cyan);line-height:1.25;padding:2px 0;}
-    .eg-line.ban pre span{color:inherit;}
     .c-c{color:var(--c-cyan);}.c-g{color:var(--c-green);}.c-y{color:var(--c-yellow);}
     .c-gray{color:var(--c-gray);}.c-d{color:var(--c-dim);}
     .c-b{font-weight:700;color:var(--c-bold);}.c-bc{font-weight:700;color:var(--c-cyan);}.c-bg{font-weight:700;color:var(--c-green);}
@@ -547,7 +545,6 @@ v5-chat。现在才有了勉强聊天的能力。实际上，以聊天机器人�
     .eg-inputbar button:hover{background:#2c974b;}
     .eg-inputbar button:disabled{opacity:.55;cursor:not-allowed;}
     .eg-foot{padding:6px 14px 9px;font-size:11px;color:var(--c-dim);text-align:center;background:var(--c-bg);border-top:1px solid #21262d;}
-    @media (max-width:480px){.eg-msgs{height:340px;}}
   </style>
 
   <div class="eg-winbar">
@@ -574,6 +571,7 @@ v5-chat。现在才有了勉强聊天的能力。实际上，以聊天机器人�
       var box = document.getElementById("egMsgs");
       var inp = document.getElementById("egInp");
       var btn = document.getElementById("egSend");
+      var WIDGET = document.getElementById("egggpt-widget");
       var busy = false;
 
       function esc(s) {
@@ -614,13 +612,19 @@ v5-chat。现在才有了勉强聊天的能力。实际上，以聊天机器人�
           var s = document.createElement("span");
           s.style.cssText = "position:absolute;visibility:hidden;left:-9999px;";
           s.textContent = "0";
-          document.body.appendChild(s);
+          box.appendChild(s); // 放进 widget 内：缩放时字符宽度与容器宽度同步，抵消后换行列数与桌面一致
           _ch = s.offsetWidth || 8;
-          document.body.removeChild(s);
+          box.removeChild(s);
         }
         return Math.max(20, Math.floor((box.clientWidth - 32) / _ch));
       }
-      window.addEventListener("resize", function () { cols(); });
+      function fitWidget() {
+        if (!WIDGET || !WIDGET.parentElement) return;
+        var avail = WIDGET.parentElement.clientWidth;
+        var scale = Math.min(1, avail / 640); // 640 为设计宽度：窄屏（手机）整体等比缩小，排版与桌面一致
+        WIDGET.style.zoom = scale;
+      }
+      window.addEventListener("resize", function () { cols(); fitWidget(); });
 
       function addLine(html, cls) {
         var d = document.createElement("div");
@@ -686,30 +690,7 @@ v5-chat。现在才有了勉强聊天的能力。实际上，以聊天机器人�
         if (s >= 60) return Math.floor(s / 60) + "m " + (s % 60) + "s";
         return s + "s";
       }
-      function bannerHTML() {
-        var R = [
-          "        █████",
-          "      █████████",
-          "     ███ ███ ███",
-          "    █████████████",
-          "    █████████████",
-          "     ███████████",
-          "       ███████"
-        ];
-        var artW = 18;
-        var lines = [];
-        for (var i = 0; i < R.length; i++) {
-          var a = R[i];
-          var sp = artW - a.length + 3;
-          var s = a;
-          for (var k = 0; k < sp; k++) s += " ";
-          if (i === 3) s += '<span class="c-bc">eggGPT</span> <span class="c-d">· v5-chat-110M</span>';
-          lines.push(s);
-        }
-        return '<pre>' + lines.join("\n") + '</pre>';
-      }
-
-      addLine(bannerHTML(), "ban");
+      fitWidget();
       var st = addSpinner("检查后端状态…");
       fetch(HEALTH, { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (h) {
         removeSpinner(st);

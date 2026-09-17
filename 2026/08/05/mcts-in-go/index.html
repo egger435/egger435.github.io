@@ -31,7 +31,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://egger435.github.io/images/mcts-in-go/1785989269244.png">
 <meta property="article:published_time" content="2026-08-05T23:03:30.000Z">
-<meta property="article:modified_time" content="2026-08-27T11:44:32.229Z">
+<meta property="article:modified_time" content="2026-09-17T06:44:41.483Z">
 <meta property="article:author" content="Egger">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="蒙特卡洛树搜索">
@@ -265,7 +265,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-08-27 11:44:32" itemprop="dateModified" datetime="2026-08-27T11:44:32+00:00">2026-08-27</time>
+      <time title="Modified: 2026-09-17 06:44:41" itemprop="dateModified" datetime="2026-09-17T06:44:41+00:00">2026-09-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -303,8 +303,10 @@
     D --&gt; |重复多次| A</code></pre>
 <h3 id="选择">选择</h3>
 <p>  从根节点开始，根据UCB公式计算得到最大值的子节点。然后选择那个节点，不断向下搜索，知道到达底部的叶节点并等待下一步操作。</p>
-<p>$$ UCB(child) = + c P </p>
-<p>$$</p>
+<p><span class="math display">\[
+UCB(child) = \overline{V_i} + c \cdot P \cdot
+\sqrt{\frac{\ln{N_{parent}}}{N_{child}}}
+\]</span></p>
 <ul>
 <li><span
 class="math inline">\(\overline{V_i}\)</span>：子节点的平均价值，比如围棋中的胜率</li>

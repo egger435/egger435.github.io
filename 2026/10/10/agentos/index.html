@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"egger435.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":false,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":500},"language":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="简单来说，具身智能（Embodied AI）是一个能够感知现实世界、理解环境、并通过自己的物理实体去行动和完成任务的智能体。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于具身智能以及具身智能操作系统的一些思考">
+<meta property="og:url" content="https://egger435.github.io/2026/10/10/agentos/index.html">
+<meta property="og:site_name" content="EGGER">
+<meta property="og:description" content="简单来说，具身智能（Embodied AI）是一个能够感知现实世界、理解环境、并通过自己的物理实体去行动和完成任务的智能体。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://egger435.github.io/2026/10/10/agentos/images/agentos/image.png">
+<meta property="og:image" content="https://egger435.github.io/2026/10/10/agentos/images/agentos/image1.png">
+<meta property="og:image" content="https://egger435.github.io/2026/10/10/agentos/images/agentos/image2.png">
+<meta property="og:image" content="https://egger435.github.io/2026/10/10/agentos/images/agentos/image3.png">
+<meta property="og:image" content="https://egger435.github.io/2026/10/10/agentos/images/agentos/image4.png">
+<meta property="article:published_time" content="2026-10-10T15:33:30.000Z">
+<meta property="article:modified_time" content="2026-10-10T07:43:11.291Z">
+<meta property="article:author" content="Egger">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://egger435.github.io/2026/10/10/agentos/images/agentos/image.png">
+
+
+<link rel="canonical" href="https://egger435.github.io/2026/10/10/agentos/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://egger435.github.io/2026/10/10/agentos/","path":"2026/10/10/agentos/","title":"关于具身智能以及具身智能操作系统的一些思考"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>关于具身智能以及具身智能操作系统的一些思考 | EGGER</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">EGGER</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">10</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">9</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">33</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%92%8C%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.</span> <span class="nav-text">一、具身智能和具身智能操作系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 什么是具身智能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E8%AE%A4%E4%B8%BA%E7%9A%84%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 我认为的具身智能操作系统</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E7%9A%84%E7%8E%B0%E7%8A%B6"><span class="nav-number">2.</span> <span class="nav-text">二、具身智能的现状</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E4%B8%80%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%9C%89%E4%BA%86%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9C%A8%E5%93%AA"><span class="nav-number">2.1.</span> <span class="nav-text">文章一：《大模型有了，机器人的“操作系统”在哪？》</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E4%BA%8C%E5%85%B7%E8%BA%ABclaw%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BDos%E7%9A%84%E5%A4%A7%E5%B0%8F%E8%84%91%E5%8D%8F%E5%90%8C%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E4%BD%93"><span class="nav-number">2.2.</span> <span class="nav-text">文章二：《具身Claw：具身智能OS的大小脑协同具身智能体》</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E4%B8%89swarmgpt-using-llms-to-control-drone-swarms"><span class="nav-number">2.3.</span> <span class="nav-text">文章三：《SwarmGPT:
+Using LLMs to Control Drone Swarms》</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E9%9D%A2%E5%AF%B9%E7%9A%84%E5%85%B1%E5%90%8C%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">三、面对的共同问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E4%B8%8D%E5%90%8C%E7%9A%84%E5%B0%9D%E8%AF%95%E6%96%B9%E6%A1%88"><span class="nav-number">4.</span> <span class="nav-text">四、不同的尝试方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E4%B8%80phyagentos%E7%94%A8%E5%8D%8F%E8%AE%AE%E9%AA%8C%E6%94%B6%E8%A7%A3%E5%86%B3%E4%B8%8D%E5%8F%AF%E9%9D%A0"><span class="nav-number">4.1.</span> <span class="nav-text">文章一：PhyAgentOS——用“协议+验收”解决不可靠</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E4%BA%8C%E5%85%B7%E8%BA%ABclaw%E7%94%A8%E5%88%86%E5%B1%82%E5%85%A8%E6%A0%88%E8%BD%AF%E4%BB%B6%E8%A7%A3%E5%86%B3%E7%B3%BB%E7%BB%9F%E5%89%B2%E8%A3%82"><span class="nav-number">4.2.</span> <span class="nav-text">文章二：具身Claw——用“分层+全栈软件”解决系统割裂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E4%B8%89swarmgpt%E7%94%A8%E7%A8%80%E7%96%8F%E8%BE%93%E5%87%BA%E7%8B%AC%E7%AB%8B%E5%AE%89%E5%85%A8%E5%B1%82%E8%A7%A3%E5%86%B3%E5%AE%89%E5%85%A8"><span class="nav-number">4.3.</span> <span class="nav-text">文章三：SwarmGPT——用“稀疏输出+独立安全层”解决安全</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E5%AE%83%E4%BB%AC%E7%9A%84%E5%85%B1%E5%90%8C%E7%82%B9"><span class="nav-number">5.</span> <span class="nav-text">五、它们的共同点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AD%E7%94%B1%E8%87%AA%E7%84%B6%E7%BE%A4%E4%BD%93%E6%99%BA%E8%83%BD%E5%90%AF%E5%8F%91%E7%9A%84%E6%97%A0%E4%BA%BA%E6%9C%BA%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E4%BD%93%E9%9B%86%E7%BE%A4"><span class="nav-number">6.</span> <span class="nav-text">六、由自然群体智能启发的无人机具身智能体集群</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E7%A0%94%E7%A9%B6"><span class="nav-number">6.1.</span> <span class="nav-text">相关研究</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Egger</p>
+  <div class="site-description" itemprop="description">Hello im egger</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/egger435" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;egger435" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://egger435.github.io/2026/10/10/agentos/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Egger">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="EGGER">
+      <meta itemprop="description" content="Hello im egger">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="关于具身智能以及具身智能操作系统的一些思考 | EGGER">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          关于具身智能以及具身智能操作系统的一些思考
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-10-10 15:33:30 / Modified: 07:43:11" itemprop="dateCreated datePublished" datetime="2026-10-10T15:33:30+00:00">2026-10-10</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>  简单来说，具身智能（Embodied
+AI）是一个能够感知现实世界、理解环境、并通过自己的物理实体去行动和完成任务的智能体。</p>
+<span id="more"></span>
+<h1
+id="一具身智能和具身智能操作系统">一、具身智能和具身智能操作系统</h1>
+<h2 id="什么是具身智能">1.1 什么是具身智能</h2>
+<p>简单来说，具身智能（Embodied
+AI）是一个能够感知现实世界、理解环境、并通过自己的物理实体去行动和完成任务的智能体。</p>
+<ul>
+<li><strong>物理实体</strong>：作为承载智能的身体，智能不再只存在于文本空间，而是依托机器人、无人机等物理载体通过各种传感器以及执行机构与物理世界耦合</li>
+<li><strong>感知</strong>：通过各种传感器获取周围环境和自身状态信息，将物理世界转化为智能体能理解的数据</li>
+<li><strong>理解</strong>：将感知得到的信息转化对环境、任务和自身状态的语义理解，并结合目标进行判断和推理</li>
+<li><strong>行动</strong>：根据决策结果，通过各种执行机构作用域于物理世界</li>
+</ul>
+<p>与被称为离身智能的数字世界的LLM相比，具身智能对于时间约束更加严格。在无人机这种对控制时延敏感的应用场景中，一旦决策时间过长，就有可能会造成不可挽回的结果。另外，从结果评价体系上来看，LLM是看其回答对不对，符不符合人类经验；具身智能是看最终任务有没有完成，过程是否安全。</p>
+<h2 id="我认为的具身智能操作系统">1.2 我认为的具身智能操作系统</h2>
+<p>具身智能操作系统是位于基础模型与物理本体之间的一层系统软件。以
+任务/会话 为基础调度单位，统一管理
+感知——规划——控制——验证——安全——经验学习
+的全流程，并对异构本体以及异构模型提供低耦合的接方式。</p>
+<p>它并不是像传统意义上的操作系统，而是在传统机器人操作系统、机器人中间件、AI
+Agent、机器人控制框架上面形成的一种软件基础设施理念。</p>
+<h1 id="二具身智能的现状">二、具身智能的现状</h1>
+<p>以下是基于三篇文章做的一个现状分析。</p>
+<h2
+id="文章一大模型有了机器人的操作系统在哪">文章一：《<strong>大模型有了，机器人的“操作系统”在哪？</strong>》</h2>
+<ul>
+<li>原文链接：<a
+target="_blank" rel="noopener" href="https://www.stdaily.com/web/gdxw/2026-07/23/content_552298.html">https://www.stdaily.com/web/gdxw/2026-07/23/content_552298.html</a></li>
+<li>来源：科技日报</li>
+<li>时间：2026-7-23</li>
+</ul>
+<p>这篇文章提出了一个核心问题：<strong>大语言模型从”问答工具”变成能感知、规划、记忆、持续改进的智能体之后，这套面向数字世界的框架怎么进入物理世界？</strong></p>
+<p>中山大学林倞教授总结了物理世界存在的四个问题：<strong>本体异构、环境不确定、状态观测不完整、执行风险。</strong></p>
+<p>文章中写道：一旦缺少统一的任务调度、结果验证和故障恢复机制，智能体的<strong>自我改进会在执行环节断裂</strong>。这也就证明了具身智能操作系统的必要性。</p>
+<figure>
+<img src="images/agentos/image.png" alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<figure>
+<img src="images/agentos/image1.png" alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<p><strong>PhyAgentOS的三大设计主张：</strong></p>
+<ul>
+<li>OS
+不替代模型，只决定”何时调用、谁来执行、如何验收、失败后如何继续”</li>
+<li><strong>共享协议</strong>，而不是函数强绑定</li>
+<li><strong>SessionVerifier（会话验证器）</strong>——用初始任务定义 +
+环境快照做<strong>语义验收</strong>，解决”执行完了 ≠ 做对了”</li>
+</ul>
+<p>这篇文章强调的是将感知、规划、控制、验证、安全和经验积累组织成为持续运行的闭环。</p>
+<h2
+id="文章二具身claw具身智能os的大小脑协同具身智能体">文章二：《具身Claw：具身智能OS的大小脑协同具身智能体》</h2>
+<ul>
+<li>原文链接：<a
+target="_blank" rel="noopener" href="https://www.openeuler.openatom.cn/zh/blog/20260421-claw/20260421-claw.html">IB-Robot系列
+| 具身Claw：具身智能OS的大小脑协同具身智能体 |
+openEuler社区官网</a></li>
+<li>来源：开源欧拉社区博客</li>
+<li>时间：2026-4-21</li>
+</ul>
+<p>这篇文章首先从政府工作层面讲述了具身智能作为国家重点培养的未来产业，具有极大的发展空间。同时也提出了机器人行业长期面临的三大困局：</p>
+<ol type="1">
+<li><strong>系统割裂</strong>：各个模块之间连不起来</li>
+<li><strong>实时性不足</strong>：即使各个模块之间连起来了，但是反应不够快</li>
+<li><strong>开发门槛高</strong>：开发人员要理解各个模块的内容，学习成本高，做起来不容易</li>
+</ol>
+<p>除了以上三大困局外，机器人产品往往需要专业工程师进行现场部署和参数调优，这对于普通用户来说难以使用。即使完成部署后，受限于机器人的泛化能力，在不同的场景下就需要重新编程以及大量的人工示教。现实的专业调试要求与用户所期望的开箱即用体验之间存在巨大鸿沟。</p>
+<p>文章中的具身Claw提出”大脑——协同——小脑“三层架构，并强调上下行双链路：</p>
+<figure>
+<img src="images/agentos/image2.png" alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<ul>
+<li><strong>大脑层</strong>：接收自然语言指令 → 用 VLM
+做场景感知与语义理解 → 分解子任务</li>
+<li><strong>协同层</strong>：把子任务转成<strong>语义指令与 Skill
+调用</strong> → 下发小脑层；同时整合自然语言与感知数据上报大脑层</li>
+<li><strong>小脑层</strong>：控制执行层完成精准控制，把状态与执行结果回传协同层</li>
+<li><strong>下行链路</strong>：大脑层调用推理决策层完成高层规划，将子任务拆解结果传递至协同层；协同层依托基础框架层转换为语义指令与
+Skill 调用，下发至小脑层；小脑层借助控制执行层完成精准控制</li>
+<li><strong>上行链路</strong>：小脑层将状态反馈与执行结果回传协同层，数据感知层实时采集多模态数据；协同层整合自然语言与感知数据上报大脑层，形成闭环</li>
+</ul>
+<p>文章中还提到，具身Claw基于具身智能OS的底层能力，深度集成Coding
+Agent。</p>
+<p>这对于开发者而言：无需掌握ROS/ROS2、运动控制等底层知识，专注算法与业务创新；对于普通用户而言：能够做到开箱即用，任务泛化性和自主性显著提升，更换场景无需重新编程。</p>
+<p>我认为，这也是对于具身智能OS最终要达到的目标：通过OS将底层透明化，底层资源由OS统一调度，使得开发者能够在上层进行业务开发。</p>
+<h2
+id="文章三swarmgpt-using-llms-to-control-drone-swarms">文章三：《SwarmGPT:
+Using LLMs to Control Drone Swarms》</h2>
+<ul>
+<li>原文链接：<a
+target="_blank" rel="noopener" href="https://learnsyslab.github.io/swarm_GPT/">SwarmGPT - Using LLMs to
+Control Drone Swarms - SwarmGPT - Learning Systems Lab</a></li>
+<li>来源：多伦多大学航空航天研究所（UTIAS）动态系统实验室</li>
+<li>时间：2025</li>
+<li>对应论文：Schuck, Dahanaggamaarachchi, Sprenger, Vyas, Zhou,
+Schoellig, “SwarmGPT: Combining Large Language Models with Safe Motion
+Planning for Drone Swarm Choreography”, <strong>IEEE Robotics and
+Automation Letters (RA-L), 2025</strong></li>
+</ul>
+<p>这是一篇课题组官方项目文档，它讲述了如何通过自然语言指令实现无人机集群飞行表演编排与实际部署。</p>
+<p>在过去，无人机编队表演极难编程，对于缺少专业知识的普通人几乎是不可能完成的事情。SwarmGPT写道：<strong>SwarmGPT
+ensures that anyone, regardless of their background or technical skills,
+can create and deploy drone choreographies.</strong></p>
+<p>通过LLM，SwarmGPT彻底改变了传统无人机表演的编程模式，通过自然语言指令就能够实现表演编排，而无需关注底层究竟发生了什么。我认为，这是未来无人机开发的一个方向，自然语言编程能够大大降低无人机开发的门槛，使得对普通用户更加友好。</p>
+<figure>
+<img src="images/agentos/image3.png" alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<p>用户给出自然语言指令，LLM收到之后生成航点，系统通过与帝国一的运动原语将其编排成choreography。此时用户可以阅读编排结果，若不满意则reprompt后让LLM修改，直到用户满意。最终将编排结果通过axswarm安全滤波器后进行仿真验证，最终真机部署。</p>
+<p><a href="images/agentos/overview_5mb.mp4">overview_5mb.mp4</a></p>
+<p>配套组件：</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>组件</strong></th>
+<th><strong>作用</strong></th>
+<th><strong>技术细节</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>swarmGPT</strong></td>
+<td>LLM 编排层</td>
+<td>提供 UI，用户用自然语言交互，无需技术背景</td>
+</tr>
+<tr class="even">
+<td><strong>axswarm</strong></td>
+<td><strong>安全滤波器</strong>（轨迹规划器）</td>
+<td>用 JAX 重写的 Python 版本，支持自动微分 + GPU/TPU
+加速；“填补航点之间的空隙”</td>
+</tr>
+<tr class="odd">
+<td><strong>crazyflow</strong></td>
+<td>仿真软件</td>
+<td>基于 JAX 的高性能仿真框架，高效并行化 + 自动微分</td>
+</tr>
+<tr class="even">
+<td><strong>Crazyswarm</strong></td>
+<td>真机平台</td>
+<td>8–20 架 Crazyflie 实飞</td>
+</tr>
+</tbody>
+</table>
+<p>但是这个项目对于无人机具身智能操作系统来说，存在一些局限性：该项目属于无人机编队表演，并不是自主搜索或者侦察任务。无人机的轨迹是事先规划好，在用户以及安全滤波器审查后再执行的。</p>
+<ul>
+<li>非自主任务</li>
+<li>无感知闭环</li>
+<li>室内受控环境</li>
+</ul>
+<p>因此，此项目适合作为<strong>无人机集群协同控制与具身智能系统的基础验证案例</strong>，能够体现多无人机之间的协同、任务调度以及安全控制能力，但尚不能充分体现具身智能所强调的<strong>自主感知、环境理解、动态决策和闭环交互</strong>能力。</p>
+<h1 id="三面对的共同问题">三、面对的共同问题</h1>
+<ul>
+<li><strong>问题1：模型不等于系统</strong>。AI模型能够理解和规划任务，但是无法独立完成感知、通信、控制、安全等完整闭环。</li>
+<li><strong>问题2：异构接入成本高昂</strong>。不同机器人、传感器和计算平台接口各异，导致大量重复的适配和集成工作</li>
+<li><strong>问题3：执行完不等于做对</strong>。机器人完成动作并不代表任务达成，需要通过环境反馈验证结果进行动态调整。</li>
+<li><strong>问题4：实时性与安全性没有独立保障</strong>。高层AI决策具有不确定性，而机器人底层控制要求实时、稳定和可验证。</li>
+</ul>
+<p>因此，具身智能OS并不需要一个更强大的模型，而是需要一个能够将模型、机器人、环境、任务和安全机制组织起来的系统。</p>
+<h1 id="四不同的尝试方案">四、不同的尝试方案</h1>
+<h2
+id="文章一phyagentos用协议验收解决不可靠">文章一：PhyAgentOS——用“协议+验收”解决不可靠</h2>
+<ul>
+<li><p><strong>以session为调度单位</strong>：整条任务是一个可以追踪、可以验收的单元，而不是简单的一串actions</p>
+<p>将整个任务包装成一个Session。以一次无人机搜寻任务为例：
+用户向系统下达“让无人机搜索东部区域，找到红色车辆后返回”的任务后，系统会创建一个独立的
+<strong>Session</strong>，记录任务目标以及无人机的初始状态；随后持续记录无人机从起飞、搜索不同区域、发现并确认目标到最终返回基地的整个执行过程，同时同步记录环境变化和任务状态。任务结束后，Session
+不仅记录“无人机执行了哪些动作”，还会结合最初的任务目标判断<strong>是否真正完成了任务</strong>，最终形成一份完整、可追踪、可验证的任务记录。</p></li>
+<li><p><strong>state-as-a-file</strong>：通过md、yaml文件配置将系统的“认知状态”和实际发生的“物理状态”显式分开。</p></li>
+<li><p><strong>共享协议而非函数绑定</strong>：新本体、新模型可接入而不改接口；状态、过程、结果可检查、可审计。
+PhyAgentOS 更希望使用一种统一的<strong>协议 / 状态 /
+任务描述方式</strong>。</p>
+<p>机器人只要告诉系统：我是谁？我有什么能力？我现在的状态？我能否执行这个任务？</p>
+<p>例如：</p>
+<p><pre><code class="highlight yaml"><span class="attr">UAV1:</span>
+<span class="attr">capability:</span>
+  <span class="bullet">-</span> <span class="string">fly</span>
+  <span class="bullet">-</span> <span class="string">search</span>
+  <span class="bullet">-</span> <span class="string">detect</span>
+
+<span class="attr">UAV2:</span>
+<span class="attr">capability:</span>
+  <span class="bullet">-</span> <span class="string">fly</span>
+  <span class="bullet">-</span> <span class="string">search</span>
+  <span class="bullet">-</span> <span class="string">detect</span>
+  <span class="bullet">-</span> <span class="string">thermal_imaging</span></code></pre></p>
+<p>这样一来，上层Agent就不需要关注每个无人机用的是什么飞控，用的是什么SDK的细节问题。</p></li>
+<li><p><strong>SessionVerifier</strong>：用初始任务定义 +
+环境快照做语义验收，区分”执行结束”与”语义完成”。</p></li>
+</ul>
+<h2
+id="文章二具身claw用分层全栈软件解决系统割裂">文章二：具身Claw——用“分层+全栈软件”解决系统割裂</h2>
+<ul>
+<li><p><strong>大脑—协同—小脑</strong>：三层异构计算：认知、调度、控制在物理上分离又协作
+这种架构的一个重要特点是<strong>物理上的异构计算</strong>：高算力的大脑可以部署在云端或中央计算平台，而实时性要求较高的小脑部署在机器人端，从而同时兼顾<strong>智能性、协同性和实时性</strong>。</p></li>
+<li><p><strong>Intelligence BooM 五层栈</strong>：从 Agent
+底座到数据感知的全链路软件模块</p>
+<ul>
+<li><strong>具身 Agent 底座</strong>：负责多种 AI 模型和 Agent
+的组织与编排，让机器人能够理解任务、调用能力。</li>
+<li><strong>推理决策层</strong>：提供模仿学习、强化学习等能力，把高层任务转化为具体策略和行为。</li>
+<li><strong>控制执行层</strong>：负责运动控制、执行加速和控制协同，将策略真正落实到机器人动作。</li>
+<li><strong>基础框架层</strong>：提供通信中间件、异构计算以及 AI
+框架等基础能力，让不同的软件、硬件能够协同工作。</li>
+<li><strong>数据感知层</strong>：负责视觉、力觉等多模态数据采集、处理和管理，为上层模型提供真实世界的信息。</li>
+</ul></li>
+<li><p><strong>1 大脑 + N
+小脑</strong>：针对多机协作，云端统一规划、端侧并行执行</p>
+<p>一个大脑负责全局：理解用户任务、全局任务规划、多机器人任务分配、共享环境信息、根据执行结果重新规划。</p>
+<p>N个小脑部署再不同及其上：负责本机感知；执行具体skill；实时运动控制；反馈自身状态</p></li>
+</ul>
+<h2
+id="文章三swarmgpt用稀疏输出独立安全层解决安全">文章三：SwarmGPT——用“稀疏输出+独立安全层”解决安全</h2>
+<ul>
+<li>LLM只输出稀疏航点，不输出控制量；由独立的axswarm来确保点与点之间如何飞的安全</li>
+<li>预定义运动原语：将LLM的组合空间限制在有限的原语之内</li>
+<li>放大用户作用：用户阅读编排结果，不满意就reprompt</li>
+<li>三级审查：人类审查+安全滤波+前置仿真</li>
+</ul>
+<h1 id="五它们的共同点">五、它们的共同点</h1>
+<ul>
+<li><strong>分层与解耦</strong>：将复杂的具身智能系统划分为不同层级，让各层承担明确的职责，减少模块之间的直接依赖。例如，具身Claw将认知、任务调度与运动控制分层，PhyAgentOS则将高层任务规划与底层任务执行分离。分层解耦能够降低系统复杂度，方便独立开发、调试与升级。</li>
+<li><strong>将能力标准化为可复用单元</strong>：将机器人的功能封装成具有统一接口的能力模块，例如导航、抓取、目标搜索等
+Skill，使上层智能体无需了解底层实现细节，就能组合调用这些能力。标准化能够减少重复开发，并提高不同模型、机器人本体和任务之间的兼容性。</li>
+<li><strong>可检查、可审计、可追溯</strong>：系统不仅要执行任务，还要记录任务状态、执行过程、环境变化和最终结果。例如，PhyAgentOS通过
+Session 记录完整任务过程，并利用 SessionVerifier
+验证任务是否真正完成。这让系统出现问题时能够定位原因，也为任务验收、失败恢复和后续优化提供依据。</li>
+<li><strong>外部约束先于执行</strong>：机器人不能仅凭 AI
+模型的决策就直接执行动作，而应在执行前检查任务是否满足安全、资源和实时性等约束。例如，无人机需要遵守禁飞区、飞行高度、电量和避障要求，机械臂则需要满足运动范围与碰撞约束。通过独立的约束检查与安全机制，将
+AI 的自主决策限制在可执行、可验证的安全范围内。</li>
+</ul>
+<h1
+id="六由自然群体智能启发的无人机具身智能体集群">六、由自然群体智能启发的无人机具身智能体集群</h1>
+<p>前段时间在观察天上的鸟的时候注意到无人机集群和鸟群等自然群体有许多相似之处：</p>
+<ul>
+<li>鸟群：协同运动</li>
+<li>鱼群：动态避障</li>
+<li>蚁群：分工与任务分配</li>
+<li>蜂群：集体决策</li>
+</ul>
+<p>从自然界可以得到一个重要启发：群体智能不一定来自一个无所不知的中央大脑，也可以由具备简单规则的个体，通过局部交互、信息共享和环境反馈自发形成。</p>
+<p>不过，自然群体的行为机制并不都相同。鸟群、鱼群更适合说明协同运动，蚁群适合说明路径搜索和分布式优化，蜂群则可以启发群体决策。</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>维度</th>
+<th>传统无人机集群</th>
+<th>具身智能体集群</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>决策方式</td>
+<td>预设规则、集中规划或分布式算法</td>
+<td>智能体结合任务目标与实时环境自主决策</td>
+</tr>
+<tr class="even">
+<td>信息来源</td>
+<td>位置、速度等状态信息为主</td>
+<td>环境感知、任务语义、邻居状态等多源信息</td>
+</tr>
+<tr class="odd">
+<td>协同方式</td>
+<td>编队控制、轨迹跟踪、任务分配</td>
+<td>局部交互、能力协作、动态任务重分配</td>
+</tr>
+<tr class="even">
+<td>环境变化</td>
+<td>根据预设规则或规划器调整</td>
+<td>感知变化、评估任务进展并重新规划</td>
+</tr>
+<tr class="odd">
+<td>核心目标</td>
+<td>让多架无人机协同完成指定动作</td>
+<td>让多个具身智能体自主协作完成复杂任务</td>
+</tr>
+</tbody>
+</table>
+<p>由此可以提出一个初步的架构设想</p>
+<figure>
+<img src="images/agentos/image4.png" alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<p>这里最关键的设计原则有三个：</p>
+<ul>
+<li><strong>个体自主</strong>：
+每架无人机具备局部环境感知、状态判断、避障和任务执行能力。</li>
+<li><strong>局部交互</strong>：
+无人机通过邻居状态、任务进度和环境信息进行协作，而不是所有决策都依赖中央节点。</li>
+<li><strong>群体涌现</strong>：
+通过个体规则和协作机制，使整个集群实现区域覆盖、目标搜索、队形调整和故障后的任务重组。</li>
+</ul>
+<p>任务示例：多架无人机自主搜索指定区域，发现目标后共享信息，并根据环境变化动态调整分工。</p>
+<ol type="1">
+<li><p><strong>任务下达</strong></p>
+<p>用户要求搜索指定区域中的目标，系统将任务划分为多个搜索区域，并初始化集群任务状态。</p></li>
+<li><p><strong>分布式搜索</strong></p>
+<p>每架无人机结合自身传感器和邻居信息选择搜索方向，减少重复搜索，并保持安全间距。</p></li>
+<li><p><strong>信息共享</strong></p>
+<p>无人机 A
+发现疑似目标后，将目标位置、置信度和相关观测信息共享给其他无人机。</p></li>
+<li><p><strong>动态重规划</strong></p>
+<p>系统根据已搜索区域、目标线索、剩余电量和通信状态，重新分配搜索任务。</p></li>
+<li><p><strong>故障适应与任务验收</strong></p>
+<p>如果无人机 B
+退出任务，其他无人机重新分配其负责区域；最终根据搜索覆盖率、目标确认情况和安全状态判断任务是否完成。</p></li>
+</ol>
+<h2 id="相关研究">相关研究</h2>
+<ol type="1">
+<li>《无人机仿鸟群协同控制发展现状及关键技术》（2024）</li>
+</ol>
+<ul>
+<li>方向：借鉴鸟群的局部交互与自组织机制，实现无人机集群协同控制。</li>
+<li>意义：为自然群体智能向无人机集群迁移提供研究基础。</li>
+<li><a
+target="_blank" rel="noopener" href="https://hkxb.buaa.edu.cn/CN/10.7527/S1000-6893.2024.29946?utm_source=chatgpt.com">论文原文</a></li>
+</ul>
+<ol start="2" type="1">
+<li>《Swarm Intelligence: A Survey of Model Classification and
+Applications》（2025）</li>
+</ol>
+<ul>
+<li>方向：群体智能模型分类及应用综述。</li>
+<li>意义：了解蚁群、粒子群等自然启发式算法的基本原理及应用。</li>
+<li><a
+target="_blank" rel="noopener" href="https://doi.org/10.1016/j.cja.2024.03.019">论文原文</a></li>
+</ul>
+<ol start="3" type="1">
+<li>AeroWeaver: An Embodied-Agent Harness for Weaving Aerial Skills into
+Distributed, Adaptive Swarm Execution（2026）</li>
+</ol>
+<ul>
+<li>方向：将具身智能体、无人机技能和分布式集群协作结合。</li>
+<li>意义：与“无人机具身智能体集群”最直接相关，涉及局部决策、技能调用与执行经验更新。</li>
+<li><a
+target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.18520?utm_source=chatgpt.com">arXiv
+预印</a></li>
+</ul>
+<ol start="4" type="1">
+<li>When Multi-Robot Systems Meet Agentic AI: Towards Embodied
+Collective Intelligence（2026）</li>
+</ol>
+<ul>
+<li>方向：提出具身集体智能（ECI）的概念框架。</li>
+<li>意义：探讨多机器人如何共享环境信息、协同行动并积累集体经验。</li>
+<li><a
+target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.27929?utm_source=chatgpt.com">arXiv
+预印</a></li>
+</ul>
+<p>在思考自然群体智能对无人机集群的启发时，我注意到第三篇文章AeroWeaver。由于目前尚未深入阅读该论文，现阶段仅作初步了解。该研究尝试通过可复用技能、角色分工与执行反馈，将具身智能体与无人机集群的分布式协同执行相结合，为未来探索自然群体智能与无人机具身智能体集群的融合提供了一个值得关注的方向。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/08/27/my-small-gpt-egggpt/" rel="prev" title="自己做了一个小GPT——eggGPT">
+                  <i class="fa fa-angle-left"></i> 自己做了一个小GPT——eggGPT
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Egger</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

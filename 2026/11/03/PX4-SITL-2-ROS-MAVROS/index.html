@@ -31,7 +31,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://egger435.github.io/images/PX4-SITL-2-ROS-MAVROS/pic1.png">
 <meta property="article:published_time" content="2026-11-03T10:28:53.000Z">
-<meta property="article:modified_time" content="2026-11-03T03:21:39.586Z">
+<meta property="article:modified_time" content="2026-11-20T03:33:48.949Z">
 <meta property="article:author" content="Egger">
 <meta property="article:tag" content="学习笔记">
 <meta property="article:tag" content="无人机学习">
@@ -122,7 +122,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">11</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">10</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">35</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">11</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">10</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">36</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -187,7 +187,7 @@ Python节点监控PX4状态</span></a><ol class="nav-child"><li class="nav-item 
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -258,9 +258,15 @@ Python节点监控PX4状态</span></a><ol class="nav-child"><li class="nav-item 
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2026-11-03 10:28:53 / Modified: 03:21:39" itemprop="dateCreated datePublished" datetime="2026-11-03T10:28:53+00:00">2026-11-03</time>
+      <time title="Created: 2026-11-03 10:28:53" itemprop="dateCreated datePublished" datetime="2026-11-03T10:28:53+00:00">2026-11-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-11-20 03:33:48" itemprop="dateModified" datetime="2026-11-20T03:33:48+00:00">2026-11-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -316,37 +322,37 @@ ROS程序中使用ROS相关的消息、服务等机制，而在PX4中对外主�
 <p>  以上为概念上的简化结构。</p>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>名词</th>
 <th>解释</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>ROS Node</td>
 <td>ROS 中独立运行的程序</td>
 </tr>
-<tr class="even">
+<tr>
 <td>ROS Topic</td>
 <td>节点之间进行异步消息通信的机制</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>ROS Message</td>
 <td>Topic之间传输的一种数据结构</td>
 </tr>
-<tr class="even">
+<tr>
 <td>ROS Service</td>
 <td>请求-响应式通信机制</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MAVROS</td>
 <td>ROS 与 MAVLink 飞控系统之间的桥梁</td>
 </tr>
-<tr class="even">
+<tr>
 <td>MAVLink</td>
 <td>无人机系统之间的通信协议</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>uORB</td>
 <td>PX4内部的消息发布与订阅机制</td>
 </tr>
@@ -372,17 +378,17 @@ ROS程序中使用ROS相关的消息、服务等机制，而在PX4中对外主�
 roslaunch mavros px4.launch fcu_url:=<span class="string">&quot;udp://:14540@127.0.0.1:14580&quot;</span></code></pre>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>端口</th>
 <th>作用</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>14580</td>
 <td>PX4本地发送端口</td>
 </tr>
-<tr class="even">
+<tr>
 <td>14540</td>
 <td>MAVROS接收端口</td>
 </tr>
@@ -437,21 +443,21 @@ rospy.Subscriber(
 就会认为外部控制端失联，并触发预设的保护措施。</p>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>参数</th>
 <th>作用</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>COM_OF_LOSS_T</td>
 <td>Offboard 失联后，等待多长时间再触发保护</td>
 </tr>
-<tr class="even">
+<tr>
 <td>COM_OBL_ACT</td>
 <td>Offboard 失联时的主要保护动作（无 RC 情况）</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>COM_OBL_RC_ACT</td>
 <td>Offboard 失联时存在 RC 遥控器情况下的保护动作</td>
 </tr>
@@ -479,6 +485,9 @@ rospy.Subscriber(
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2026/11/20/hulu/" rel="next" title="呼噜">
+                  呼噜 <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>
